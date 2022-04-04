@@ -1,0 +1,27 @@
+/* 全局属性 */
+:root {
+    --color-text: #666;
+    --color-background: #FFFFFF;
+    --color-hilight-text: #42bBaa;
+    --font-size: 14px;
+    --line-height: 1.5;
+}
+
+*,
+/* 对所有子元素进行设置 */
+*::before,*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: boder-box;
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-text);
+    width: 100vw; /*占整个设备宽度*/
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text);
+}
