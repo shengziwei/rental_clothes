@@ -3,7 +3,7 @@ import axios from "axios";
 export function request(config){
     const instance = axios.create({
             baseURL:"https://happyRental",
-            timeout:3000,
+            timeout: 3000,
             header:{
             }    
         })
@@ -17,12 +17,12 @@ export function request(config){
 
     //响应拦截
     instance.interceptors.response.use(res=>{
-        return res.data ? res.data : res;
+        return res.data;
     },err=>{
         //未登录情况下，禁止访问部分网站
 
     })
 
-    return instance;
+    return instance(config);//返回instance(config)的带参函数，而不是instance对象
 }
 
