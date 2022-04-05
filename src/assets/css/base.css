@@ -1,7 +1,7 @@
 /* 全局属性 */
 :root {
     --color-text: #666;
-    --color-background: #FFFFFF;
+    --color-background: #faebebd5;
     --color-hilight-text: #42bBaa;
     --font-size: 14px;
     --line-height: 1.5;
@@ -25,3 +25,4 @@ a {
     text-decoration: none;
     color: var(--color-text);
 }
+a:focus{color: black;}

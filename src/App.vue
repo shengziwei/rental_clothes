@@ -1,17 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/home">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<div id="app">
+  <nav-bar></nav-bar>
+</div>
 </template>
+
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import NavBar from '@/components/common/navBar.vue'
+
 
 export default {
-  name: 'App',
+  name: 'APP',
   components: {
-    HelloWorld
+    NavBar
   }
 }
 </script>
@@ -25,4 +26,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>
