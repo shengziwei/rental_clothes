@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1649137271699') format('truetype');
+  src: url('iconfont.ttf?t=1649211057198') format('truetype');
 }
 
 .iconfont {
@@ -15,15 +15,23 @@
   content: "\e6ca";
 }
 
+.icon-search:before {
+  content: "\e60f";
+}
+
+.icon-back:before {
+  content: "\e608";
+}
+
 .icon-shopcart:before {
   content: "\e882";
 }
 
-.icon-category:before {
-  content: "\e623";
+.icon-user:before {
+  content: "\e610";
 }
 
-.icon-user:before {
-  content: "\e615";
+.icon-category:before {
+  content: "\e623";
 }
 

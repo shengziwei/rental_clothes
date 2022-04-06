@@ -23,7 +23,8 @@
 </template>
 
 <script>
-export default({
+export default ({
+    name: 'NavBar'
 })
 </script>
 
@@ -36,7 +37,8 @@ export default({
     left:0;
     right:0;
     bottom:0;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-shadow: 0 -1px 2px rgb(100,100,100,0.2);
 }
 .navBar-item{
     flex: 1;

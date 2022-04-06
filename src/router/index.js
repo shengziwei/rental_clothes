@@ -9,7 +9,10 @@ const routes = [
   {
     path: '',
     name: 'default',
-    component: Home
+    component: Home,
+    meta:{
+
+    },//meta字段元数据，导航守卫，之后用于登录校验
   },
   {
     path: '/home',
