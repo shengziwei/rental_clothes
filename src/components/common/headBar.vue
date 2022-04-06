@@ -9,7 +9,7 @@
 <script>
 import { useRouter } from "vue-router"
 
-export default {
+export default{
     name: 'HeadBar',
     setup() {
         const router = useRouter();
@@ -27,7 +27,7 @@ export default {
 .headBar{
     height: 45px;
     background-color: #ebdada5d;
-    box-shadow: 0 -1px 2px rgb(100,100,100,0.2);
+    box-shadow: 0 -1px 2px rgb(100,100,100);
     position: fixed;
     left:0;
     right: 0;

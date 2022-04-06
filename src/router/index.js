@@ -4,6 +4,7 @@ const Home = () => import('@/views/HomeView.vue')
 const ShopCart = () => import('@/views/ShopCartView.vue')
 const Category = () => import('@/views/CategoryView.vue')
 const User = () => import('@/views/UserView.vue')
+const BeforeLogin = () => import('@/views/BeforeLoginView.vue')
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/user',
     name: 'user',
     component: User
+  },
+  {
+    path: '/before_login',
+    name: 'beforeLogin',
+    component: BeforeLogin
   }
 ]
 

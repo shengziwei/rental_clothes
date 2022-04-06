@@ -2,6 +2,10 @@
   font-family: "iconfont"; /* Project id  */
   src: url('iconfont.ttf?t=1649211057198') format('truetype');
 }
+@font-face {
+  font-family: "VisbyCF-Thin";
+  src: url('@/assets/fonts/VisbyCF-Thin.ttf');
+}
 
 .iconfont {
   font-family: "iconfont" !important;
