@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 .banner img{
-  height:300px;
+  height:250px;
   width:100%;
   border-radius: 2px;
 }

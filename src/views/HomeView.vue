@@ -1,6 +1,17 @@
 <template>
 <div class="home">
   <banner></banner>
+     <div class='divider'>
+      <div class='line'></div>
+      <div class='text'>品牌推荐</div>
+      <div class='line'></div>
+     </div>
+  <div class='brand'>
+    <div><img src='@/assets/images/ledin.png'></div>
+    <div><img src='@/assets/images/ur.png'></div>
+    <div><img src='@/assets/images/only.png'></div>
+    <div><img src='@/assets/images/teenie.png'></div>
+  </div>
     <div class='divider'>
       <div class='line'></div>
       <div class='text'>热租单品</div>
@@ -8,19 +19,11 @@
     </div>
   <div class='recommend'>
     <div class='recommend-item' v-for="item in recommends.slice(0,6)" :key="item.id">
-     <a href="">
-        <img :src='item.cover_url' alt="">
-        <div class ='goods-name' >{{item.name}}</div>
-        <div class = 'price'><div>￥</div>{{item.price}}</div>
-        <button class='buy-button'>加入购物车</button>
+     <a href="" @click.prevent = 'goDetail(item.id)' ><!--取消原来的事件，使用自定义事件-->
+     <goods :item="item"></goods>
       </a>
   </div>
   </div>
-     <div class='divider'>
-      <div class='line'></div>
-      <div class='text'>品牌推荐</div>
-      <div class='line'></div>
-    </div>
 </div>
 </template>
 
@@ -29,15 +32,33 @@ import {getHomeGoodsData} from '@/service/home.js'
 import {ref, onMounted } from 'vue'
 import axios from 'axios'
 import banner from '@/components/home/banner.vue'
+import tabControl from '@/components/utils/TabControl.vue'
+import {useRouter} from 'vue-router'
+import goods from '@/components/home/goods.vue'
+import Goods from '@/components/home/goods.vue'
 
 export default{
   name: 'Home',
   components: { 
-    banner
+    banner,
+    tabControl,
+    Goods
   },
   setup(){
     const recommends = ref([]);
-  onMounted(()=>{getHomeGoodsData().then(res=>{//只有promise对象有then方法
+    
+    const router = useRouter();
+
+    const goDetail = (id) =>{
+      router.push({
+      name: 'Detail',
+      params: {
+          id
+        }
+      })
+    }  
+    
+    onMounted(()=>{getHomeGoodsData().then(res=>{//只有promise对象有then方法
     console.log(res);
     recommends.value = res.data.goods;
     console.log(recommends.value);
@@ -45,7 +66,8 @@ export default{
   })
 
   return{
-    recommends
+    recommends,
+    goDetail
   }
   }
 }
@@ -57,6 +79,9 @@ export default{
 </script>
 
 <style scoped>
+.home{
+  margin: 45px 0;
+}
 .divider{
   margin-top: 10px;
   display: flex;
@@ -87,18 +112,20 @@ export default{
   padding: 0 20px;
   align-items: center;
 }
-.price{
+
+.brand{
   display: flex;
+  flex-wrap: wrap;
+  margin:20px 0;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
-  margin: 5px
+  
 }
 
-.recommend img{
+.brand img{
   width:100px;
-  height:100px;
-  margin-bottom: 10px;
-  box-shadow: 0 -1px 2px rgb(100,100,100,0.2);
+  height:50px;
+  padding:5px 20px
 }
 
 </style>

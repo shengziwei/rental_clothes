@@ -31,7 +31,7 @@ export default ({
 <style>
 @import '@/assets/fonts/iconfont.css';
 .navBar{
-    background-color: #ebdada5d;
+    background-color: #fff1f1;
     display: flex;
     position: fixed;
     left:0;
