@@ -28,6 +28,7 @@ export default{
         let current = ref(0);
         const itemClick = (index) =>{
             current.value = index;
+            emit('tabClick',index)//向父组件传参,调用父组件事件
         }
 
         return{

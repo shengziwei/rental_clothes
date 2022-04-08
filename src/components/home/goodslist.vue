@@ -21,7 +21,9 @@ export default {
     props:{
         goodsData: {
             type: Object,
-            default: {}
+            default(){
+              return {}
+            }
         }
     },
     setup() {

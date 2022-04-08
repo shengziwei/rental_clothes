@@ -28,27 +28,68 @@
     ]
     },
     "category":{
-       "type":"hot",
-       "goodsInfo":[
-        {
-            "id": 4,
-            "price": 2,
-            "name": "白色荷叶边衬衣",
-            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
-       },
-       {
-        "id": 4,
-        "price": 2,
-        "name": "白色荷叶边衬衣",
-        "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
-   
-   },
-   {
-    "id": 4,
-    "price": 2,
-    "name": "白色荷叶边衬衣",
-    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
-    }]
-
+        "hot":{
+            "goodsInfo":[
+                {
+                    "id": 4,
+                    "price": 2,
+                    "name": "白色荷叶边衬衣",
+                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+                },
+                {
+                    "id": 5,
+                    "price": 2,
+                    "name": "白色荷叶边衬衣",
+                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                },
+                {
+                    "id": 6,
+                    "price": 2,
+                    "name": "白色荷叶边衬衣",
+                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                    }]
+                },
+                "new":{
+                    "goodsInfo":[
+                        {
+                            "id": 4,
+                            "price": 2,
+                            "name": "测试一下选项卡",
+                            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+                        },
+                        {
+                            "id": 5,
+                            "price": 2,
+                            "name": "白色荷叶边衬衣",
+                            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                        },
+                        {
+                            "id": 6,
+                            "price": 2,
+                            "name": "白色荷叶边衬衣",
+                            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                            }]
+                        },
+                        "price":{
+                            "goodsInfo":[
+                                {
+                                    "id": 4,
+                                    "price": 2,
+                                    "name": "测试一下",
+                                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+                                },
+                                {
+                                    "id": 5,
+                                    "price": 2,
+                                    "name": "白色荷叶边衬衣",
+                                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                                },
+                                {
+                                    "id": 6,
+                                    "price": 2,
+                                    "name": "白色荷叶边衬衣",
+                                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                                    }]
+                                }
     }
 }

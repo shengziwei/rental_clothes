@@ -1,8 +1,8 @@
 <template>
     <div class='category-view'>
-        <tab-control :titles="['新品上架','价格','热销']"></tab-control> 
+        <tab-control @tabClick="tabClick"  :titles="['新品上架','价格','热销']"></tab-control> 
         <div>
-            <goods-list :goodsData="goodsData"></goods-list>
+            <goods-list :goodsData="currentGoods"></goods-list>
         </div>
     </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 import TabControl from '@/components/utils/TabControl.vue'
 import {getCategoryGoodsData} from '@/service/category.js'
-import { onMounted, ref } from '@vue/runtime-core'
+import { computed, onMounted, reactive, ref } from '@vue/runtime-core'
 import GoodsList from '@/components/home/goodslist.vue'
 
 export default {
@@ -20,16 +20,41 @@ export default {
         GoodsList
     },
     setup() {
-        const goodsData = ref([]);
+        const goodsData = reactive({
+            new: {list:[]},
+            hot:{list:[]},
+            price:{list:[]}
+        });
 
-        onMounted(()=>{getCategoryGoodsData().then( res=>{
+        let currentType = ref('hot');
+        const currentGoods = computed(() =>{
+            return goodsData[currentType.value].list;
+        })
+
+        onMounted(()=>{
+            getCategoryGoodsData('hot').then( res=>{
                     console.log(res)
-                    goodsData.value =res.data.goodsInfo;
+                    goodsData.hot.list =res.data.goodsInfo;
                 })
+              getCategoryGoodsData('price').then( res=>{
+                    console.log(res)
+                    goodsData.price.list =res.data.goodsInfo;
+                })
+                  getCategoryGoodsData('new').then( res=>{
+                    console.log(res)
+                    goodsData.new.list =res.data.goodsInfo;
+                })
+                console.log(goodsData);
         })  
         
+        const tabClick = (index) => {
+            let types = ['hot','price','new'];
+            currentType.value = types[index];
+        }        
         return{
-            goodsData
+            goodsData,
+            currentGoods,
+            tabClick
         }
     },
 }
