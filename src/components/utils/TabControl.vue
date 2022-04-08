@@ -47,17 +47,18 @@ export default{
     align-items: center;
     justify-content: center;
     position: sticky;
-    top:50px
+    background-color: rgb(244, 236, 228);
+    top:45px
 }
 
 .tab-control-item{
     flex:1;
     text-align: center;
-    border-right: 1px solid antiquewhite;
+    border-right: 1px solid rgb(114, 101, 101,0.3);
 }
 
 .tab-control-item.active{
-    border-bottom: 2px solid brown;
+    border-bottom: 1px solid brown;
 }
 
 

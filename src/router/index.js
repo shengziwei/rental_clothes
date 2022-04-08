@@ -5,6 +5,7 @@ const ShopCart = () => import('@/views/ShopCartView.vue')
 const Category = () => import('@/views/CategoryView.vue')
 const User = () => import('@/views/UserView.vue')
 const BeforeLogin = () => import('@/views/BeforeLoginView.vue')
+const Login = () => import('@/views/LoginView.vue')
 const Detail = () => import('@/views/DetailView.vue')
 
 const routes = [
@@ -45,6 +46,11 @@ const routes = [
     path: '/before_login',
     name: 'beforeLogin',
     component: BeforeLogin
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/detail',

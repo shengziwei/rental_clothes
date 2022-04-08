@@ -17,13 +17,7 @@
       <div class='text'>热租单品</div>
       <div class='line'></div>
     </div>
-  <div class='recommend'>
-    <div class='recommend-item' v-for="item in recommends.slice(0,6)" :key="item.id">
-     <a href="" @click.prevent = 'goDetail(item.id)' ><!--取消原来的事件，使用自定义事件-->
-     <goods :item="item"></goods>
-      </a>
-  </div>
-  </div>
+    <goods-list :goodsData="recommends"></goods-list>
 </div>
 </template>
 
@@ -31,32 +25,19 @@
 import {getHomeGoodsData} from '@/service/home.js'
 import {ref, onMounted } from 'vue'
 import axios from 'axios'
-import banner from '@/components/home/banner.vue'
-import tabControl from '@/components/utils/TabControl.vue'
-import {useRouter} from 'vue-router'
-import goods from '@/components/home/goods.vue'
-import Goods from '@/components/home/goods.vue'
+import Banner from '@/components/home/banner.vue'
+import TabControl from '@/components/utils/TabControl.vue'
+import GoodsList from '@/components/home/goodslist.vue'
 
 export default{
   name: 'Home',
   components: { 
-    banner,
-    tabControl,
-    Goods
+    Banner,
+    TabControl,
+    GoodsList
   },
   setup(){
     const recommends = ref([]);
-    
-    const router = useRouter();
-
-    const goDetail = (id) =>{
-      router.push({
-      name: 'Detail',
-      params: {
-          id
-        }
-      })
-    }  
     
     onMounted(()=>{getHomeGoodsData().then(res=>{//只有promise对象有then方法
     console.log(res);
@@ -66,8 +47,7 @@ export default{
   })
 
   return{
-    recommends,
-    goDetail
+    recommends
   }
   }
 }
@@ -98,19 +78,6 @@ export default{
 .text{
   margin: 0 15px;
   font-family: 'VisbyCF-Thin';
-}
-.recommend{
-  display: flex;
-  align-content: center;
-  font-size: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.recommend-item{
-  margin: 20px;
-  padding: 0 20px;
-  align-items: center;
 }
 
 .brand{

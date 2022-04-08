@@ -32,7 +32,7 @@ export default {
   margin: 5px
 }
 
-.recommend img{
+.goods-info img{
   width:100px;
   height:100px;
   margin-bottom: 10px;
