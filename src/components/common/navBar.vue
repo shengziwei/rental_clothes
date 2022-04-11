@@ -10,7 +10,11 @@
         </router-link>
         <div class='navBar-item'><img class='logo' src='@/assets/images/logo.png'></div>
         <router-link class='navBar-item' to="/shopcart">
-        <div class='icon'><i class='iconfont icon-shopcart'></i></div>
+        <div class='icon'>
+            <van-badge :content="0" max="9">           
+            <i class='iconfont icon-shopcart'></i>
+            </van-badge>
+        </div>
         <div>购物车</div>
         </router-link>
         <router-link class='navBar-item' to="/before_login">

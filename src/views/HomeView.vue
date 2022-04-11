@@ -2,7 +2,7 @@
 <div class="home">
   <div class='wrapper' ref='wrapper'>
     <div class='content'>
-  <banner></banner>
+  <banner :bannerData='homeBanner'></banner>
      <div class='divider'>
       <div class='line'></div>
       <div class='text'>品牌推荐</div>
@@ -45,14 +45,17 @@ export default{
   setup(){
     const recommends = ref([]);
     const wrapper = ref(null);
+    const homeBanner = ref([]);
     let bscroll = reactive({});
     let page=1;
     
     onMounted(()=>{
     getHomeGoodsData().then(res=>{//只有promise对象有then方法
     console.log(res);
+    homeBanner.value = res.data.banner;
     recommends.value = res.data.goods;
     console.log(recommends.value);
+    console.log(homeBanner.value);
     })
 
     //在保证dom元素加载成功的情况下，new BScroll对象才是成功的
@@ -94,7 +97,8 @@ export default{
 
   return{
     recommends,
-    wrapper
+    wrapper,
+    homeBanner
   }
   }
 }

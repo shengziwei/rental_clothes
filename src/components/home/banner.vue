@@ -1,11 +1,21 @@
 <template>
-    <div class='banner'>
-     <img src='@/assets/images/banner.png'>
-    </div>
+  <van-swipe :autoplay="3000" lazy-render>
+     <van-swipe-item v-for="item,index in bannerData" :key="index">
+    <img :src="item" alt/>
+  </van-swipe-item>
+  </van-swipe>
 </template>
 
 <script>
 export default {
+    props:{
+      bannerData:{
+        type: Array,
+        default(){
+          return []
+        }
+      }
+   },
     setup() {
         
     },
@@ -13,12 +23,17 @@ export default {
 </script>
 
 <style scoped>
-.banner img{
+.van-swipe-item img{
   height:250px;
-  width:100%;
-  border-radius: 2px;
+  width: 100%;
 }
-.banner{
-  padding:0;
-}
+.van-swipe-item {
+    color: #fff;
+    font-size: 20px;
+    line-height: 150px;
+    height:250px;
+    width:100%;
+    text-align: center;
+    background-color: #39a9ed;
+  }
 </style>
