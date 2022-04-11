@@ -1,5 +1,7 @@
 <template>
 <div class="home">
+  <div class='wrapper' ref='wrapper'>
+    <div class='content'>
   <banner></banner>
      <div class='divider'>
       <div class='line'></div>
@@ -18,16 +20,20 @@
       <div class='line'></div>
     </div>
     <goods-list :goodsData="recommends"></goods-list>
+    </div>
+  </div>
 </div>
 </template>
+<!--下拉刷新，上拉加载选用better-scroll开发-->
 
 <script>
 import {getHomeGoodsData} from '@/service/home.js'
-import {ref, onMounted } from 'vue'
+import {ref, onMounted, reactive, watchEffect, nextTick } from 'vue'
 import axios from 'axios'
 import Banner from '@/components/home/banner.vue'
 import TabControl from '@/components/utils/TabControl.vue'
 import GoodsList from '@/components/home/goodslist.vue'
+import BScroll from 'better-scroll'
 
 export default{
   name: 'Home',
@@ -38,16 +44,57 @@ export default{
   },
   setup(){
     const recommends = ref([]);
+    const wrapper = ref(null);
+    let bscroll = reactive({});
+    let page=1;
     
-    onMounted(()=>{getHomeGoodsData().then(res=>{//只有promise对象有then方法
+    onMounted(()=>{
+    getHomeGoodsData().then(res=>{//只有promise对象有then方法
     console.log(res);
     recommends.value = res.data.goods;
     console.log(recommends.value);
     })
+
+    //在保证dom元素加载成功的情况下，new BScroll对象才是成功的
+    bscroll = new BScroll(wrapper.value,{
+      probeType: 3,
+      click: true, //允许点击
+      pullUpLoad: true //滚动加载更多
+    });
+
+    //触发滚动事件
+    bscroll.on('scroll',(position)=>{
+       //滚动后刷新页面，重新计算新的区域的高度
+       //需要使用refresh方法
+    })
+
+    bscroll.on('pullingUp',()=>{
+      page = page+1;
+
+      getHomeGoodsData(page).then(res=>{//只有promise对象有then方法
+       console.log(res);
+       recommends.value.push(...res.data.goods);
+       console.log(recommends.value);
+    });
+
+    bscroll.finishPullUp();
+
+    bscroll.refresh();
+  
+    })
+  });
+
+ //监听变量变化
+  watchEffect(()=>{
+    //延迟执行数据更新，dom渲染完成后进行数据更新
+    nextTick(()=>{
+      bscroll && bscroll.refresh();
+    })
   })
 
   return{
-    recommends
+    recommends,
+    wrapper
   }
   }
 }
@@ -60,7 +107,7 @@ export default{
 
 <style scoped>
 .home{
-  margin: 45px 0;
+position: relative;
 }
 .divider{
   margin-top: 10px;
@@ -94,5 +141,14 @@ export default{
   height:50px;
   padding:5px 20px
 }
-
+.wrapper{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.content {
+  padding-bottom: 50px
+}
 </style>

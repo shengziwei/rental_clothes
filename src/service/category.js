@@ -1,10 +1,11 @@
 import {request} from './base'
 
-export function getCategoryGoodsData(type='hot'){
+export function getCategoryGoodsData(type='hot',page=1){
     return request({
     url: '/api/getCategoryGoodsData',
     data:{
-        type
+        type,
+        page
     },
     method: 'post'
 })

@@ -32,6 +32,7 @@ export default ({
 @import '@/assets/fonts/iconfont.css';
 .navBar{
     background-color: #fff1f1;
+    height: 50px;
     display: flex;
     position: fixed;
     left:0;
@@ -39,6 +40,7 @@ export default ({
     bottom:0;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-shadow: 0 -1px 2px rgb(100,100,100,0.2);
+    z-index: 10;
 }
 .navBar-item{
     flex: 1;
