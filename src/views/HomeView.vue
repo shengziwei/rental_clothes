@@ -17,8 +17,10 @@
       <div class='text'>热租单品</div>
       <div class='line'></div>
     </div>
-    <div class="list">
-    <goods-list :goodsData="recommends" @getData="getData"></goods-list>
+    <div class="wrapper">
+    <better-scroll class='content' ref="content"  @loadMore="loadMore">
+    <goods-list :goodsData="recommends" ></goods-list>
+    </better-scroll>
     </div>
     </div>
 </template>
@@ -31,20 +33,20 @@ import axios from 'axios'
 import Banner from '@/components/home/banner.vue'
 import TabControl from '@/components/utils/TabControl.vue'
 import GoodsList from '@/components/home/goodslist.vue'
-import BScroll from 'better-scroll'
+import BetterScroll from '@/components/utils/BetterScroll.vue'
 
 export default{
   name: 'Home',
   components: { 
     Banner,
     TabControl,
-    GoodsList
+    GoodsList,
+    BetterScroll
   },
   setup(){
     const recommends = ref([]);
-    const wrapper = ref(null);
     const homeBanner = ref([]);
-    let bscroll = reactive({});
+    const content = ref(null)
     let page=1;
     
     onMounted(()=>{
@@ -57,19 +59,22 @@ export default{
     })
   });
 
-  const getData = (page) => {
+  const loadMore= () => {
+    page = page + 1;
     getHomeGoodsData(page).then(res=>{
       console.log("父组件调用"+page);
       recommends.value.push(...res.data.goods);
+      content.value.scroll.finishPullUp();
+      content.value.scroll.refresh();
       console.log("homeview的getData获得"+recommends.value.length);
     })
   }
 
   return{
     recommends,
-    wrapper,
     homeBanner,
-    getData
+    content,
+    loadMore
   }
   }
 }
@@ -82,7 +87,6 @@ export default{
 
 <style scoped>
 .home{
-margin-top: 45px;
 position: relative;
 height: 100vh
 }
@@ -118,6 +122,18 @@ height: 100vh
   height:50px;
   padding:5px 20px
 }
-
+.wrapper{
+  margin-top: 10px;
+position: relative;
+height: 100vh
+}
+.content{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  overflow: hidden;
+}
 
 </style>
