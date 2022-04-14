@@ -54,12 +54,14 @@ export default {
   align-content: center;
   font-size: 10px;
   flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
   justify-content: center;
 }
 
 .goods-item{
-  margin: 20px;
-  padding: 0 20px;
+  margin: 20px 4% 10px;
+  padding: 0 3%;
   align-items: center;
 }
 </style>

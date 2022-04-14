@@ -129,7 +129,7 @@ height: 100vh
 }
 .content{
   position: absolute;
-  top: 0px;
+  top:px;
   left: 0px;
   bottom: 0px;
   right: 0px;

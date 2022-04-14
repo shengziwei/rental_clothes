@@ -40,4 +40,8 @@ export default {
   margin-bottom: 10px;
   box-shadow: 0 -1px 2px rgb(100,100,100,0.2);
 }
+
+.goods-name{
+  width:100px
+}
 </style>
