@@ -1,69 +1,61 @@
 <template>
-    <div class='login-view'>
+    <div class='register-view'>
          <img  src = "@/assets/images/logo.png">
         <div class='login-form'>
-            <div class='title'>login</div>
+            <div class='title'>register</div>
             <div class='item'>username</div>
             <input type= 'text' v-model="name">
             <div class='item'>password</div>
             <input type='password' v-model="password">
         </div>
-        <div class='link-register' @click="$router.push({path:'/register'})">
-            没有账号，立即注册
-        </div>
-        <button @click="onSubmit">SIGN IN</button>
+        <button @click="onSubmit">REGISTER</button>
     </div>
 </template>
+
 <script>
 import { reactive, toRefs } from '@vue/reactivity'
-import { Notify } from "vant"
-import { loginRequest } from "@/service/user.js"
+import {registerRequest} from "@/service/user.js"
+import {Notify} from 'vant'
+import {useRouter} from 'vue-router'
 
 export default {
-    name:'Login',
-    components:{
+     name: "Register",
+     components:{
 
-    },
+     },
     setup() {
-          const userInfo = reactive({
+        const userInfo = reactive({
             name: '',
             password:''
-        });
-        const onSubmit = ()=>{
+        })
+        const router = useRouter();
+        const onSubmit = () =>{
             if(userInfo.name === '')
             Notify('账号或密码不能为空');
             else
             {
-                loginRequest(userInfo).then(res=>{
-                    if(res.data.status === '200'){
-                    Notify({type:'success',message:'登录成功'});
-                    let token = res.data.token;
-                    window.localStorage.setItem("access_token",access_token);
-                    console.log()
-                    }
+                registerRequest(userInfo).then(res=>{
+                    if(res.data.status === '200')
+                    Notify({type:'success',message:'注册成功'});
                     setTimeout(()=>{
                         router.push({path:'/user'});
                     },1000)
                 })
-                //用户的登陆状态将被存储在vuex中，Vuex往往用于组件间传值（响应式）
-                //token信息将被存储在localstorage种，localstorage往往用于跨页面传值（非响应式）
-                //刷新页面时vuex存储的值会丢失而localstorage不会，因此token存储在localstorage中
-
+                name = '';
+                password = '';
             }
-        }
-
-        return{
-            ...toRefs(userInfo),
-            onSubmit
-        }
+        };
+    return {
+        onSubmit,
+        ...toRefs(userInfo)
+    }
 
     },
 
 }
-</script>
-
+</script>>
 <style scoped>
-.login-view img{
+.register-view img{
     margin-top:100px;
 }
 
@@ -72,7 +64,7 @@ export default {
     margin-top: 10px;
     align-content: center;
     justify-items: center;
-    margin:  10px 30px;
+    margin: 30px;
 }
 
 .title{
@@ -103,6 +95,8 @@ input{
     width: 90%;
     margin: 0.4em 0 1.4em;
     border-radius: 0;
+    font-size: 18px;
+    font-weight: bold
 }
 button{
     font-family: 'VisbyCF-Bold';
@@ -117,11 +111,6 @@ button{
     background: #111111;
     color: #fff;
     width: 240px
-}
-
-.link-register{
-    margin-bottom: 20px;
-    color: brown;
 }
 </style>
 

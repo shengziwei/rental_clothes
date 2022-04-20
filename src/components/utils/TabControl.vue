@@ -52,7 +52,7 @@ export default {
 	position: sticky;
 	background-color: rgb(244, 236, 228);
 	top: 45px;
-}
+}                                                                                                                                                                                                                                                                                                                                         
 
 .tab-control-item {
 	flex: 1;

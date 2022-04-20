@@ -1,0 +1,8 @@
+{
+    "register":{
+        "status":"200"
+    },
+    "login":{
+        "status":"200"
+    }
+}

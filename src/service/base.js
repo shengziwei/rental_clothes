@@ -17,9 +17,11 @@ export function request(config){
 
     //响应拦截
     instance.interceptors.response.use(res=>{
+        console.log(res)
         return res.data;
     },err=>{
     //未登录/登录但未注册会员情况下，禁止访问部分网页
+        console.log(err)
 
     })
 

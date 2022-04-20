@@ -60,6 +60,7 @@ export default {
 }
 
 .goods-item {
+  width: 36%;
 	margin: 20px 4% 10px;
 	padding: 0 3%;
 	align-items: center;

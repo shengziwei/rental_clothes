@@ -6,6 +6,10 @@
   font-family: "VisbyCF-Thin";
   src: url('@/assets/fonts/VisbyCF-Thin.ttf');
 }
+@font-face {
+  font-family: "VisbyCF-Bold";
+  src: url('@/assets/fonts/VisbyCF-Bold.ttf');
+}
 
 .iconfont {
   font-family: "iconfont" !important;

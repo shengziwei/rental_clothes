@@ -7,6 +7,7 @@ const User = () => import('@/views/UserView.vue')
 const BeforeLogin = () => import('@/views/BeforeLoginView.vue')
 const Login = () => import('@/views/LoginView.vue')
 const Detail = () => import('@/views/DetailView.vue')
+const Register = () => import('@/views/RegisterView.vue') 
 
 const routes = [
   {
@@ -56,6 +57,11 @@ const routes = [
     path: '/detail',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   }
 ]
 

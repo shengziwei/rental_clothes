@@ -35,8 +35,7 @@ export default {
 }
 
 .goods-info img{
-  width:100px;
-  height:100px;
+  width:100%;
   margin-bottom: 10px;
   box-shadow: 0 -1px 2px rgb(100,100,100,0.2);
 }

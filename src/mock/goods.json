@@ -1,6 +1,21 @@
 {
+    "info":
+    {
     "id": 1,
     "name":"测试商品详情页",
     "price":"2",
-    "image":"https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+    "image":[
+        "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg",
+        "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+    ]
+    },
+    "comments":[
+        {
+            "username":"1234",
+            "user_profile":"https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg",
+            "comment_content":"不错！",
+            "comment_time":11
+        }
+    ]
+    
 }

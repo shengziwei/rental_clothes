@@ -52,7 +52,6 @@ export default {
 		onMounted(() => {
 			getHomeGoodsData().then((res) => {
 				//只有promise对象有then方法
-				console.log(res);
 				homeBanner.value = res.data.banner;
 				recommends.value = res.data.goods;
 				console.log(recommends.value);
