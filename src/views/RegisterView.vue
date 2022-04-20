@@ -37,12 +37,12 @@ export default {
                 registerRequest(userInfo).then(res=>{
                     if(res.data.status === '200')
                     Notify({type:'success',message:'注册成功'});
+                    
                     setTimeout(()=>{
                         router.push({path:'/user'});
                     },1000)
                 })
-                name = '';
-                password = '';
+              
             }
         };
     return {

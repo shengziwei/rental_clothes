@@ -3,6 +3,7 @@
         "status":"200"
     },
     "login":{
-        "status":"200"
+        "status":"200",
+        "access_token":"12345"
     }
 }

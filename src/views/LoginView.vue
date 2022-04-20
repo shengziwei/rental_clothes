@@ -18,6 +18,9 @@
 import { reactive, toRefs } from '@vue/reactivity'
 import { Notify } from "vant"
 import { loginRequest } from "@/service/user.js"
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+
 
 export default {
     name:'Login',
@@ -29,6 +32,10 @@ export default {
             name: '',
             password:''
         });
+        const store = useStore();
+        const router = useRouter();
+        
+
         const onSubmit = ()=>{
             if(userInfo.name === '')
             Notify('账号或密码不能为空');
@@ -37,10 +44,11 @@ export default {
                 loginRequest(userInfo).then(res=>{
                     if(res.data.status === '200'){
                     Notify({type:'success',message:'登录成功'});
-                    let token = res.data.token;
-                    window.localStorage.setItem("access_token",access_token);
-                    console.log()
+                    let token = res.data.access_token;
+                    window.localStorage.setItem("access_token",token);
+                    store.commit("setIsLogin",true); //调用commit触发mutation中的方法
                     }
+            
                     setTimeout(()=>{
                         router.push({path:'/user'});
                     },1000)

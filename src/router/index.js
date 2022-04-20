@@ -1,3 +1,5 @@
+import store from '@/store'
+import { Notify } from 'vant'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const Home = () => import('@/views/HomeView.vue')
@@ -14,9 +16,6 @@ const routes = [
     path: '',
     name: 'default',
     component: Home,
-    meta:{
-
-    },//meta字段元数据，导航守卫，之后用于登录校验
   },
   {
     path: '/home',
@@ -41,7 +40,10 @@ const routes = [
   {
     path: '/user',
     name: 'user',
-    component: User
+    meta:{
+      isAuthRequired: true
+    },
+    component: User,
   },
   {
     path: '/before_login',
@@ -69,5 +71,22 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
+//路由守卫
+ router.beforeEach((to,from,next) =>{
+   const isLogin = store.state.user.isLogin;
+   console.log(to.meta.isAuthRequired);
+   console.log(isLogin);
+   if(to.meta.isAuthRequired ===true && isLogin===false){
+     console.log("***"+window.localStorage.getItem("token"))
+     Notify("登陆后访问");
+     return next({name: "login"})
+   } 
+  else
+   {
+    console.log("！！！"+window.localStorage.getItem("token"))
+     return next();
+   }
+ })
 
 export default router
