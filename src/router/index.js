@@ -10,6 +10,7 @@ const BeforeLogin = () => import('@/views/BeforeLoginView.vue')
 const Login = () => import('@/views/LoginView.vue')
 const Detail = () => import('@/views/DetailView.vue')
 const Register = () => import('@/views/RegisterView.vue') 
+const OrderList = () => import('@/views/OrderListView.vue')
 
 const routes = [
   {
@@ -43,9 +44,9 @@ const routes = [
   {
     path: '/user',
     name: 'user',
-    meta:{
-      isAuthRequired: true
-    },
+    // meta:{
+    //   isAuthRequired: true
+    // },
     component: User,
   },
   {
@@ -67,6 +68,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/orderlist',
+    name: 'OrderList',
+    component: OrderList
   }
 ]
 

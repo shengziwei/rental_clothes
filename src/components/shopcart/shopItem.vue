@@ -2,9 +2,7 @@
 <div class='shopItem' >
 <div class='itemBox'>
     <div class='box'>
-<van-radio-group v-model="checked">
-  <van-radio name="1"></van-radio>
-</van-radio-group>
+  <van-checkbox v-model="checked" :name="item.id" shape="square" checked-color="black"></van-checkbox>
     </div>
  <div class='image'><img :src='item.cover_url'></div>
  <div class='goodsInfo'>
@@ -14,7 +12,7 @@
 </div>
  <div class='goodsControl'>
  <quantity-control class='quantity'  :modelValue="item.num"></quantity-control>
- <div class='delete'>remove</div>
+ <div class='delete' @click='deleteItem'>remove</div>
  </div>
 </div>
 </template>
@@ -36,6 +34,9 @@ export default {
     },
     setup() {
     const checked = ref('1');
+    const deleteItem=()=>{
+
+    }
     return {
         checked
     }

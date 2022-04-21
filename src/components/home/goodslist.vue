@@ -52,8 +52,9 @@ export default {
 	display: flex;
 	padding-bottom: 50px;
 	align-content: center;
-	font-size: 10px;
+	font-size: 12px;
 	flex-wrap: wrap;
+	font-family: "VisbyCF-Bold";
 	width: 100%;
 	height: 100%;
 	justify-content: center;

@@ -23,6 +23,7 @@ code:0,data:data.category.overcoat})
 
 Mock.mock('https://happyRental/api/getGoodsInfo','post',{code:0,data:goodsInfo})
 Mock.mock('https://happyRental/api/register','post',{code:0,data:user.register})
+Mock.mock('https://happyRental/api/getUserInfo','post',{code:0,data:user.info})
 Mock.mock('https://happyRental/api/login','post',{code:0,data:user.login})
 Mock.mock('https://happyRental/api/addShopCartData','post',{code:0,data:shopCart.add})
 Mock.mock('https://happyRental/api/getShopCartData','post',{code:0,data:shopCart.get})

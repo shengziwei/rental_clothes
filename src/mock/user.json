@@ -4,6 +4,14 @@
     },
     "login":{
         "status":"200",
+        "uid":1,
         "access_token":"12345"
+    },
+    "info":{
+        "uid": 1,
+        "profile_img":"https://s1.ax1x.com/2022/04/21/LysHpT.jpg",
+        "name":"hello!!!",
+        "points":2000,
+        "balance": 1000
     }
 }

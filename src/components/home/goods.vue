@@ -31,7 +31,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5px
+  margin: 5px;
+  font-weight: bold
 }
 
 .goods-info img{
@@ -41,6 +42,18 @@ export default {
 }
 
 .goods-name{
-  width:100px
+  width:100%
+}
+button{
+    border-radius: 15px;
+    border: 1px solid rgb(151, 149, 149);
+    background-color: #fbf3f3eb;
+    width: 90%;
+    height: 35px;
+    font-size: 10px;
+    font-weight: 200;
+    color: #111;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 </style>

@@ -15,3 +15,11 @@ export function loginRequest(data){
     method: 'post'
 })
 }
+
+export function getUserInfo(data){
+    return request({
+    url: '/api/getUserInfo',
+    data,
+    method: 'post'
+})
+}
