@@ -63,6 +63,7 @@ export default {
             2:{name:'下装\nBOTTOM',children:['牛仔裤','运动裤','休闲裤']},
             3:{name:'裙装\nDRESS',children:['连衣裙','半身裙']}
         });
+        
         const loadMore = () =>{
             page = page+1;
             getCategoryGoodsData(page,currentCategory.value).then(res=>{

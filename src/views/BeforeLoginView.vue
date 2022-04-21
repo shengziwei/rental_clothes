@@ -3,16 +3,26 @@
     <img src = "@/assets/images/logo.png">
     <div class='warning'>请登陆后继续浏览</div>
     <div class="before-login-button">
-    <button class='login'>登录</button>
+    <button class='login' @click='toLogin'>登录</button>
     <button class= 'cancle'>取消</button>
     </div>
 </div>
 </template>
 
 <script>
+import { useRouter } from "vue-router"
+
 
 export default({
     setup() {
+        const router = useRouter();
+
+        const toLogin=()=>{
+            router.push('/login')
+        }
+        return {
+            toLogin
+        }
         
     },
 })

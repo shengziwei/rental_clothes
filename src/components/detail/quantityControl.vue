@@ -14,23 +14,32 @@
 import { ref } from '@vue/reactivity'
 
 export default {
-    name: 'QuantityControl',
-    setup({emit}) {
+   name: 'QuantityControl',
+   props: {
+       modelValue:{
+           type: Number,
+           default: 1
+       }
+    },
+    setup(props,{ emit }) {
+        // const num = ref(1)
         const num = ref(1);
+        num.value = props.modelValue
+        
         const action = (a) =>{
             if(a===1)
-            num.value ++;
+            num.value++;
             else
             if(num.value>=2)
             num.value --;
-
+            emit('postToDetail',num.value)
             console.log(num.value)
         }
                
         
         return{
-            num,
-            action
+            action,
+            num
             }
         }
 }
@@ -43,19 +52,21 @@ export default {
 input{
     border: transparent;
     text-align: center;
-    width: 70%;
-    height: 20px;
+    align-items: center;
+    width: 85%;
+    height: 35px;
     font-family: 'VisbyCF-Thin';
     font-weight: bold;
 }
 .line {
-	height: 5px;
+	height: 2px;
+    width:100%;
     transform:scale(1 , 0.2);   
 	background-color: #111111;
-	margin:10px 30px;
 }
 .control{
     height: 10px;
     width: 10px;
+
 }
 </style>

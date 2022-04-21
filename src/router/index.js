@@ -35,7 +35,10 @@ const routes = [
   {
     path: '/shopcart',
     name: 'shopcart',
-    component: ShopCart
+    component: ShopCart,
+    // meta:{
+    //   isAuthRequired: true
+    // }
   },
   {
     path: '/user',
@@ -53,7 +56,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
   },
   {
     path: '/detail',
@@ -80,7 +83,7 @@ const router = createRouter({
    if(to.meta.isAuthRequired ===true && isLogin===false){
      console.log("***"+window.localStorage.getItem("token"))
      Notify("登陆后访问");
-     return next({name: "login"})
+     return next({name: "beforeLogin"})
    } 
   else
    {

@@ -1,19 +1,19 @@
 import {request} from './base'
 
-export function getShopcartData(data){
+export function getShopcartData(){
     return request({
     url: '/api/getShopCartData',
-    data:{
-        data
-    },
     method: 'post'
 })
 }
 
-export function addShopcartData(data){
+export function addShopcartData(goodsID,num){
     return request({
     url: '/api/addShopCartData',
-    data,
+    data:{
+        goodsID,
+        num
+    },
     method: 'post'
 })
 }

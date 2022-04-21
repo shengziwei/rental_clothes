@@ -9,12 +9,20 @@
 import HelloWorld from './components/HelloWorld.vue'
 import NavBar from '@/components/common/navBar'
 import HeadBar from '@/components/common/headBar'
+import { onMounted } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 
 export default {
   name: 'APP',
   components: {
     NavBar,
     HeadBar
+  },
+  setup(){
+  onMounted(()=>{
+    const store = useStore();
+    store.dispatch("updateCart");
+  })
   }
 }
 </script>
