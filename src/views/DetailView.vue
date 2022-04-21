@@ -7,10 +7,9 @@
     <div class='basicInfo'>
         <div class = 'name'>{{info.name}}</div>
         <div class = 'price'>￥{{info.price}}</div>
-        <quantity-control class='quantity' @postToDetail="getNum"></quantity-control>
+        <quantity-control class='quantity' @getNum="getNum"></quantity-control>
         <div class='button-area'>
         <button  @click='addCart'>加 入 购 物 车</button>
-        <button>立 即 购 买</button>
         </div>
     </div>
     <tab-control :titles="['商品详情','评论','相关推荐']"></tab-control> 
@@ -23,10 +22,9 @@ import { ref,onMounted,reactive,toRefs } from 'vue';
 import {useRoute} from'vue-router';
 import {getGoodsInfo} from '@/service/detail.js'
 import banner from '@/components/home/banner.vue';
-import QuantityControl from '@/components/detail/quantityControl.vue';
+import QuantityControl from '@/components/detail/detailQuantityControl.vue';
 import TabControl from '@/components/utils/TabControl.vue';
 import { addShopcartData} from '@/service/shopcart.js'
-import store from '@/store';
 import { useStore } from 'vuex';
 import { getHomeGoodsData } from '@/service/home';
 
@@ -46,18 +44,14 @@ TabControl
       })
       let id = ref(0);
       let goodsNum = ref(1);
-      id.value = route.params.id;
-   
+      id.value = route.params.id;   
 
       const getNum = (num) =>{
+          console.log("得到了",num);
           goodsNum.value = num;
     }
       
       onMounted(()=>{
-          addShopcartData(id.value,goodsNum.value).then(res=>{
-              console.log(res);
-          }
-          )
           getGoodsInfo(id.value).then(res=>{
               console.log(id.value);
               goodsInfo.info = res.data.info;
@@ -70,7 +64,18 @@ TabControl
               console.log(res);
               if(res.data.status === 'success')
               {
-                store.dispatch('updateCart')//action的方法使用分发
+               store.state.shopCart.goods.push(
+                    {
+                        id:goodsInfo.info.id,
+                        name:goodsInfo.info.name,
+                        num: goodsNum.value,
+                        price:goodsInfo.info.price,
+                        cover_url:goodsInfo.info.image[1]
+                    }
+                )
+                store.state.shopCart.totalNum+=goodsNum.value
+                store.state.shopCart.totalPrice+=goodsNum.value*goodsInfo.info.price
+                //store.dispatch('updateCart')//action的方法使用分发
               }
           
           })
@@ -81,7 +86,9 @@ TabControl
           goodsInfo,
           ...toRefs(goodsInfo),
           getNum,
-          addCart      
+          addCart,
+          goodsNum,
+          store      
      }
 }
 }

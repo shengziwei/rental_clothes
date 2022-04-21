@@ -12,15 +12,13 @@
 
 <script>
 import { ref } from '@vue/reactivity'
+import { useStore } from 'vuex';
+import { modifyShopcartData } from '@/service/shopcart';
 
 export default {
    name: 'QuantityControl',
    props: {
-       modelValue:{
-           type: Number,
-           default: 1
-       },
-       item_id:{
+       index:{
            type: Number,
            default: 1
        }
@@ -28,22 +26,33 @@ export default {
     setup(props,{ emit }) {
         // const num = ref(1)
         const num = ref(1);
-        num.value = props.modelValue
+        const store = useStore();
+        const id =  store.state.shopCart.goods[props.index].id
+        
+        num.value = store.state.shopCart.goods[props.index].num
         
         const action = (a) =>{
             if(a===1)
+          {
             num.value++;
+            store.state.shopCart.totalPrice+=store.state.shopCart.goods[props.index].price
+            }
             else
             if(num.value>=2)
-            num.value --;
-            emit('postToDetail',num.value,item_id)
+            {num.value --;
+            store.state.shopCart.totalPrice-=store.state.shopCart.goods[props.index].price
+            }
             console.log(num.value)
-        }
-               
-    
+            modifyShopcartData(id,num.value).then(res=>{
+                console.log(res);
+            })
+            }
+
+
         return{
             action,
-            num
+            num,
+            store
             }
         }
 }

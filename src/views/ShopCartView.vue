@@ -1,7 +1,9 @@
 <template>
     <div class='shopCartView'>
+        <div class='itemlist'>
         <div class='shopList' v-for="item,index in cartData" :key="index">
             <shop-item :item="item" :index='index'></shop-item>
+        </div>
         </div>
         <div class='submit'>
        <submit-bar></submit-bar>
@@ -38,19 +40,24 @@ export default{
 
 <style scoped>
 .shopList{
-    margin-top: 70px
+    margin-top: 30px
 }
 .account{
     margin-bottom: 50px;
 }
-.shopCartView{
-    height:100vh
+.itemlist{
+   padding-bottom: 160px;
+   overflow: hidden;
 }
 .submit{
+    background-color: white;
     box-shadow: 0 -3px 4px rgba(146, 145, 145, 0.2);
     position: fixed;
-    bottom:60px;
+    bottom:49px;
     width:100%
+}
+button{
+    margin-bottom: 10px;
 }
 </style>
   

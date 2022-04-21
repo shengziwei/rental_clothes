@@ -4,10 +4,21 @@
     <div>TOTAL</div>
     <div>{{$store.state.shopCart.totalPrice}}￥</div>
 </div>
-<button> 提交订单</button>
+<button @click='goOrderDetail'> 提交订单</button>
 </div>
 </template>
 
+<script>
+export default {
+    name:"submitBar",
+    components:{
+        
+    },
+    setup() {
+        
+    },
+}
+</script>
 <style>
 .submitBar{
     font-family:'VisbyCF-Bold';

@@ -11,7 +11,7 @@
  </div> 
 </div>
  <div class='goodsControl'>
- <quantity-control class='quantity'  :modelValue="item.num" @postToDetail="getNum"></quantity-control>
+ <quantity-control class='quantity'  :index="index"></quantity-control>
  <div class='delete' @click='deleteItem(item.id,index)'>remove</div>
  </div>
 </div>
@@ -19,7 +19,7 @@
 
 <script>
 import { ref, toRefs } from '@vue/reactivity';
-import quantityControl from '../detail/quantityControl.vue';
+import quantityControl from './quantityControl.vue';
 import { deleteShopcartData, getShopcartData, modifyShopcartData } from '@/service/shopcart';
 import { useStore } from 'vuex';
 import store from '@/store';
@@ -48,17 +48,13 @@ export default {
         goods.value = store.state.shopCart.goods;
     })
 
-    const getNum = (num,item_id) =>{
-        modifyShopcartData(num,item_id).then(res=>{
-            console.log(res);
-        })
-    }
     const deleteItem = (id,index)=>{
+        store.state.shopCart.totalPrice-=goods.value[index].num*goods.value[index].price
         goods.value.splice(index,1)
         deleteShopcartData(id).then(res=>{
             console.log(res);
         })
-        store.dispatch('updateCart');
+       // store.dispatch('updateCart');
     }
     const updatePrice = (index)=>{
         console.log(checked.value);
@@ -76,7 +72,6 @@ export default {
     return {
         checked,
         deleteItem,
-        getNum,
         updatePrice,
         goods,
     }
@@ -91,8 +86,8 @@ export default {
     align-items: center;
     align-content: center;
     border: 1px solid #111111;
-
 }
+
 .box{
     width: 15%;
     margin-left: 10px
