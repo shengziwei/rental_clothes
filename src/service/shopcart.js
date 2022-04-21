@@ -27,3 +27,12 @@ export function modifyShopcartData(goodsID,num){
     method: 'post'
 })
 }
+export function deleteShopcartData(goodsID){
+    return request({
+    url: '/api/modifyShopCartData',
+    data:{
+        goodsID
+    },
+    method: 'post'
+})
+}

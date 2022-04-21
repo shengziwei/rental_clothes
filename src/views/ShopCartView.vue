@@ -1,7 +1,7 @@
 <template>
     <div class='shopCartView'>
-        <div class='shopList' v-for="item in cartData" :key="item.id">
-            <shop-item :item="item"></shop-item>
+        <div class='shopList' v-for="item,index in cartData" :key="index">
+            <shop-item :item="item" :index='index'></shop-item>
         </div>
         <div class='submit'>
        <submit-bar></submit-bar>
@@ -15,6 +15,7 @@ import {getShopcartData} from '@/service/shopcart.js'
 import { setup } from 'mockjs'
 import { onMounted, reactive, ref } from '@vue/runtime-core'
 import submitBar from '@/components/shopcart/submit.vue'
+import { useStore } from 'vuex'
 export default{
     name: 'shopCart',
     components:{
@@ -23,12 +24,10 @@ export default{
     },
     setup()	{
         const cartData = ref([])
+        const store = useStore();
 
         onMounted(() => {
-			getShopcartData().then((res) => {
-                console.log(res)
-				cartData.value = res.data.goods;
-			});
+            cartData.value = store.state.shopCart.goods;
 		});
         return {
             cartData

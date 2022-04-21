@@ -11,7 +11,7 @@
         <div class='navBar-item'><img class='logo' src='@/assets/images/logo.png'></div>
         <router-link class='navBar-item' to="/shopcart">
         <div class='icon'>
-            <van-badge :content="$store.state.shopCart.cartNum" max="9">           
+            <van-badge :content="$store.state.shopCart.totalNum" max="9">           
             <i class='iconfont icon-shopcart'></i>
             </van-badge>
         </div>

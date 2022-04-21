@@ -2,7 +2,7 @@
 <div class='submitBar'>
 <div class='moneyBox'>
     <div>TOTAL</div>
-    <div>15.00￥</div>
+    <div>{{$store.state.shopCart.totalPrice}}￥</div>
 </div>
 <button> 提交订单</button>
 </div>

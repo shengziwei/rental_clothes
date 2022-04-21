@@ -2,7 +2,7 @@
 <div class='shopItem' >
 <div class='itemBox'>
     <div class='box'>
-  <van-checkbox v-model="checked" :name="item.id" shape="square" checked-color="black"></van-checkbox>
+  <van-checkbox v-model="checked" @change="updatePrice(index)" shape="square" checked-color="black"></van-checkbox>
     </div>
  <div class='image'><img :src='item.cover_url'></div>
  <div class='goodsInfo'>
@@ -11,15 +11,19 @@
  </div> 
 </div>
  <div class='goodsControl'>
- <quantity-control class='quantity'  :modelValue="item.num"></quantity-control>
- <div class='delete' @click='deleteItem'>remove</div>
+ <quantity-control class='quantity'  :modelValue="item.num" @postToDetail="getNum"></quantity-control>
+ <div class='delete' @click='deleteItem(item.id,index)'>remove</div>
  </div>
 </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
+import { ref, toRefs } from '@vue/reactivity';
 import quantityControl from '../detail/quantityControl.vue';
+import { deleteShopcartData, getShopcartData, modifyShopcartData } from '@/service/shopcart';
+import { useStore } from 'vuex';
+import store from '@/store';
+import { onMounted } from '@vue/runtime-core';
 
 export default {
 	components: { quantityControl },
@@ -30,15 +34,51 @@ export default {
             default(){
                 return {};
             }
+        },
+        index: {
+            type: Number,
+            default: 1
         }
     },
     setup() {
     const checked = ref('1');
-    const deleteItem=()=>{
+    const sore = useStore();
+    const goods = ref([]);
+    onMounted(()=>{
+        goods.value = store.state.shopCart.goods;
+    })
+
+    const getNum = (num,item_id) =>{
+        modifyShopcartData(num,item_id).then(res=>{
+            console.log(res);
+        })
+    }
+    const deleteItem = (id,index)=>{
+        goods.value.splice(index,1)
+        deleteShopcartData(id).then(res=>{
+            console.log(res);
+        })
+        store.dispatch('updateCart');
+    }
+    const updatePrice = (index)=>{
+        console.log(checked.value);
+        if(checked.value===false)
+        {
+            store.state.shopCart.totalPrice-=(goods.value[index].num*goods.value[index].price)
+        }
+         if(checked.value===true)
+        {
+            store.state.shopCart.totalPrice+=(goods.value[index].num*goods.value[index].price)
+
+        }
 
     }
     return {
-        checked
+        checked,
+        deleteItem,
+        getNum,
+        updatePrice,
+        goods,
     }
   }
 }

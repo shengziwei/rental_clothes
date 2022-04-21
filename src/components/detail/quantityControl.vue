@@ -19,6 +19,10 @@ export default {
        modelValue:{
            type: Number,
            default: 1
+       },
+       item_id:{
+           type: Number,
+           default: 1
        }
     },
     setup(props,{ emit }) {
@@ -32,11 +36,11 @@ export default {
             else
             if(num.value>=2)
             num.value --;
-            emit('postToDetail',num.value)
+            emit('postToDetail',num.value,item_id)
             console.log(num.value)
         }
                
-        
+    
         return{
             action,
             num

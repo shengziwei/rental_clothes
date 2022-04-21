@@ -1,7 +1,4 @@
 import { createStore } from 'vuex';
-import {mutations} from './mutations';
-import {getters} from './getters.js';
-import {actions} from './actions.js'
 import { getShopcartData } from '@/service/shopcart';
 
 //全局变量
@@ -10,7 +7,9 @@ const state ={
     isLogin: window.localStorage.getItem("token")? true:false
   },
   shopCart: {
-    cartNum: 0,
+    goods:[],
+    totalNum:0,
+    totalPrice:0,
   }
 };
 
@@ -21,17 +20,27 @@ export default createStore({
     setIsLogin(state, payload){
       state.user.isLogin = payload;
   },
-    setShopNum(state, payload){
-    state.shopCart.cartNum = payload.count;
+    setShopCart(state, payload){
+    state.shopCart.goods = payload;
+  },
+  setShopNumAndPrice(state,payload){
+    let i;
+    state.shopCart.totalNum = 0;
+    state.shopCart.totalPrice = 0;
+    for(i in payload)
+   {
+    state.shopCart.totalNum += payload[i].num; 
+    state.shopCart.totalPrice += payload[i].price*payload[i].num; 
+    }
   }
 },
   actions:{
     updateCart({commit}){
       getShopcartData().then((res)=>{
-        console.log(res.data.goods.length);
-        commit('setShopNum',{count:res.data.goods.length||0})
+        commit('setShopCart',res.data.goods)
+        commit('setShopNumAndPrice',res.data.goods)
       });
     }
   },
-  getters
+  getters:{}
 })
