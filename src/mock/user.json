@@ -9,9 +9,10 @@
     },
     "info":{
         "uid": 1,
-        "profile_img":"https://s1.ax1x.com/2022/04/21/LysHpT.jpg",
+        "profile_img":"https://s1.ax1x.com/2022/04/21/LccKmD.jpg",
         "name":"hello!!!",
         "points":2000,
-        "balance": 1000
+        "balance": 1000,
+        "membership":"钻石会员"
     }
 }

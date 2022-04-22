@@ -6,7 +6,7 @@
     </div>
     <div class='basicInfo'>
         <div class = 'name'>{{info.name}}</div>
-        <div class = 'price'>￥{{info.price}}</div>
+        <div class = 'price'>￥{{info.price}}/天</div>
         <quantity-control class='quantity' @getNum="getNum"></quantity-control>
         <div class='button-area'>
         <button  @click='addCart'>加 入 购 物 车</button>
@@ -27,6 +27,7 @@ import TabControl from '@/components/utils/TabControl.vue';
 import { addShopcartData} from '@/service/shopcart.js'
 import { useStore } from 'vuex';
 import { getHomeGoodsData } from '@/service/home';
+import { GridItem } from 'vant';
 
 export default{
 	components: { 
@@ -44,7 +45,7 @@ TabControl
       })
       let id = ref(0);
       let goodsNum = ref(1);
-      id.value = route.params.id;   
+      id.value = route.query.id;   
 
       const getNum = (num) =>{
           console.log("得到了",num);
@@ -64,6 +65,8 @@ TabControl
               console.log(res);
               if(res.data.status === 'success')
               {
+            if((store.state.shopCart.goods.filter(item=>item.id===id.value).length)===0)
+            {
                store.state.shopCart.goods.push(
                     {
                         id:goodsInfo.info.id,
@@ -73,10 +76,14 @@ TabControl
                         cover_url:goodsInfo.info.image[1]
                     }
                 )
-                store.state.shopCart.totalNum+=goodsNum.value
-                store.state.shopCart.totalPrice+=goodsNum.value*goodsInfo.info.price
-                //store.dispatch('updateCart')//action的方法使用分发
-              }
+                store.commit("setShopNumAndPrice",store.state.shopCart.goods)
+                // store.state.shopCart.totalNum+=goodsNum.value
+                // store.state.shopCart.totalPrice+=goodsNum.value*goodsInfo.info.price
+                // store.dispatch('updateCart')//action的方法使用分发
+                }
+                else
+                console.log("############")  
+              }          
           
           })
         }

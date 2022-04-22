@@ -3,6 +3,8 @@ import data from './data.json'
 import goodsInfo from './goods.json'
 import user from './user.json'
 import shopCart from './shopCart.json'
+import address from './address.json'
+import order from './order.json'
 
 Mock.mock('https://happyRental/api/getHomeGoodsData','post',{code:0,data:data.home})
 Mock.mock('https://happyRental/api/getCategoryGoodsData','post',  function(option){
@@ -29,3 +31,5 @@ Mock.mock('https://happyRental/api/addShopCartData','post',{code:0,data:shopCart
 Mock.mock('https://happyRental/api/getShopCartData','post',{code:0,data:shopCart.get})
 Mock.mock('https://happyRental/api/modifyShopCartData','post',{code:0,data:shopCart.modify})
 Mock.mock('https://happyRental/api/deleteShopCartData','post',{code:0,data:shopCart.delete})
+Mock.mock('https://happyRental/api/getAddress','post',{code:0,data:address})
+Mock.mock('https://happyRental/api/getOrderInfo','post',{code:0,data:order.data})

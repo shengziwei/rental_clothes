@@ -34,7 +34,7 @@ export default {
 		const goDetail = (id) => {
 			router.push({
 				name: 'Detail',
-				params: {
+				query: {
 					id,
 				},
 			});
@@ -55,13 +55,14 @@ export default {
 	font-size: 12px;
 	flex-wrap: wrap;
 	font-family: "VisbyCF-Bold";
+	font-weight: bold;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
 }
 
 .goods-item {
-  width: 36%;
+    width: 36%;
 	margin: 20px 4% 10px;
 	padding: 0 3%;
 	align-items: center;

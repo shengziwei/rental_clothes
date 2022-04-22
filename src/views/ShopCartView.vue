@@ -6,7 +6,7 @@
         </div>
         </div>
         <div class='submit'>
-       <submit-bar></submit-bar>
+       <submit-bar  :buttomType=1></submit-bar>
         </div>
     </div>
 </template>
@@ -18,6 +18,7 @@ import { setup } from 'mockjs'
 import { onMounted, reactive, ref } from '@vue/runtime-core'
 import submitBar from '@/components/shopcart/submit.vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 export default{
     name: 'shopCart',
     components:{
@@ -27,10 +28,28 @@ export default{
     setup()	{
         const cartData = ref([])
         const store = useStore();
+        const router = useRouter();
 
         onMounted(() => {
+            // getShopcartData().then(res=>{
+            //     console.log(res);
+            //     cartData.value = res.data.goods;
+            // cartData.value.forEach((item)=>{
+            //     item.isChecked=true;
+            // })
+            // console.log(cartData.value)
+            // store.state.shopCart.goods = cartData.value;
+            // store.commit("setShopNumAndPrice",cartData.value)
+            //store.dispatch("updateCart");
             cartData.value = store.state.shopCart.goods;
+           cartData.value.forEach(item=>
+               item.isChecked = true
+            )
+            store.commit("setShopNumAndPrice",cartData.value)
+            console.log("isChecked",cartData.value)
+            // })
 		});
+    
         return {
             cartData
         }

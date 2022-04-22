@@ -7,7 +7,7 @@
  <div class='image'><img :src='item.cover_url'></div>
  <div class='goodsInfo'>
      <div class='name'>{{item.name}}</div>
-     <div class='price'>￥{{item.price}}</div>
+     <div class='price'>￥{{item.price}}/天</div>
  </div> 
 </div>
  <div class='goodsControl'>
@@ -41,30 +41,36 @@ export default {
         }
     },
     setup() {
-    const checked = ref('1');
+    const checked = ref(true);
     const sore = useStore();
     const goods = ref([]);
+    const goodsId = ref([]);
     onMounted(()=>{
         goods.value = store.state.shopCart.goods;
     })
+    
 
     const deleteItem = (id,index)=>{
-        store.state.shopCart.totalPrice-=goods.value[index].num*goods.value[index].price
+        if(checked.value===true)
+        store.state.shopCart.totalPrice-=goods.value[index].num*goods.value[index].price;
+
         goods.value.splice(index,1)
+
         deleteShopcartData(id).then(res=>{
             console.log(res);
         })
        // store.dispatch('updateCart');
     }
     const updatePrice = (index)=>{
-        console.log(checked.value);
         if(checked.value===false)
         {
             store.state.shopCart.totalPrice-=(goods.value[index].num*goods.value[index].price)
+            goods.value[index].isChecked = false;
         }
          if(checked.value===true)
         {
             store.state.shopCart.totalPrice+=(goods.value[index].num*goods.value[index].price)
+            goods.value[index].isChecked = true;
 
         }
 
@@ -73,7 +79,7 @@ export default {
         checked,
         deleteItem,
         updatePrice,
-        goods,
+        goods
     }
   }
 }
@@ -99,7 +105,8 @@ export default {
 }
 .image img{
     width:100px;
-    height:100px
+    height:100px;
+    margin:5px;
 }
 .goodsControl{
     display: flex;

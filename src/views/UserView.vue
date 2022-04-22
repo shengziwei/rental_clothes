@@ -7,7 +7,10 @@
            height="100"
            :src='profile_img'
             />
+            <div class=basicBox>
            <div class="name">{{name}}</div>
+           <div class="membership">{{membership}}</div>
+            </div>
       </div>
       <div class='moneyBox'>
           <div class='balance'>
@@ -62,7 +65,8 @@ export default{
             name:null,
             balance:null,
             points:null,
-            profile_img:null
+            profile_img:null,
+            membership: null
         })
 
         onMounted(()=>{
@@ -72,6 +76,7 @@ export default{
                 userInfo.balance= res.data.balance;
                 userInfo.points =res.data.points;
                 userInfo.profile_img = res.data.profile_img
+                userInfo.membership = res.data.membership
             })
         })
 
@@ -94,10 +99,19 @@ export default{
     justify-items: center;
      box-shadow: 0 8px 0px rgba(146, 145, 145, 0.2);
 }
-.name{
+.basicBox{
     font-size: 26px;
     width: 50%;
     font-weight: bold;
+    font-family: "VisbyCF-Bold";
+}
+.membership{
+    font-size: 15px;
+    font-weight: 400;
+    color: brown;
+    margin: 10px 40px;
+    padding: 10px 20px;
+    border: dotted brown
 }
 .moneyBox{
     margin-top: 10px;
@@ -105,6 +119,8 @@ export default{
     display: flex;
     font-weight: bold;
     font-family: "VisbyCF-Bold";
+    align-items: center;
+    justify-items: center;
     box-shadow: 0 8px 0px rgba(146, 145, 145, 0.2);
 }
 .moneyBox img{

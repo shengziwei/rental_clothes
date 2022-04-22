@@ -11,6 +11,7 @@ const Login = () => import('@/views/LoginView.vue')
 const Detail = () => import('@/views/DetailView.vue')
 const Register = () => import('@/views/RegisterView.vue') 
 const OrderList = () => import('@/views/OrderListView.vue')
+const Order = () =>import('@/views/OrderView.vue')
 
 const routes = [
   {
@@ -73,6 +74,11 @@ const routes = [
     path: '/orderlist',
     name: 'OrderList',
     component: OrderList
+  },
+  {
+    path: '/order',
+    name: 'Order',
+    component: Order
   }
 ]
 

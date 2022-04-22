@@ -17,7 +17,7 @@
         </div>
         <div>购物车</div>
         </router-link>
-        <router-link class='navBar-item' to="/login">
+        <router-link class='navBar-item' to="/user">
         <div class='icon'><i class='iconfont icon-user'></i></div>
         <div>我的</div>
         </router-link>

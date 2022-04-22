@@ -10,14 +10,13 @@
     },
     "get":{
       "status":"success",
-      "totalPrice": 9.00,
       "goods":[
         {
             "id": 4,
             "price": 2.00,
             "num": 1,
             "name": "测试选项卡tshirt",
-            "cover_url": "https://s1.ax1x.com/2022/04/21/LysHpT.jpg"     
+            "cover_url": "https://s1.ax1x.com/2022/04/21/LccKmD.jpg"     
         },
         {
             "id": 5,

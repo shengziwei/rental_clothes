@@ -54,5 +54,6 @@ button{
 }
 .cancle{
     color:brown;
+    background-color: white;
 }
 </style>

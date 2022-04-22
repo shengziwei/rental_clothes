@@ -1,0 +1,20 @@
+{
+   "data": [
+       {
+           "id":1,
+           "name":"测试商品",
+           "price": 2,
+           "cover_url":"https://s1.ax1x.com/2022/04/21/LccKmD.jpg",
+           "num":2
+       },
+       {
+        "id":2,
+        "name":"测试商品",
+        "price": 2,
+        "cover_url":"https://s1.ax1x.com/2022/04/21/LccKmD.jpg",
+        "num":2
+
+       }
+   ]
+
+}

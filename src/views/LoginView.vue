@@ -47,6 +47,7 @@ export default {
                     let token = res.data.access_token;
                     window.localStorage.setItem("access_token",token);
                     store.commit("setIsLogin",true); //调用commit触发mutation中的方法
+                    store.dispatch("updateCart")
                     }
             
                     setTimeout(()=>{

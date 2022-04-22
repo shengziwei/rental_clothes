@@ -4,17 +4,65 @@
     <div>TOTAL</div>
     <div>{{$store.state.shopCart.totalPrice}}￥</div>
 </div>
-<button @click='goOrderDetail'> 提交订单</button>
+<button @click="goOrderDetail(buttomType)">{{buttomContent}}</button>
 </div>
 </template>
 
 <script>
+import { ref } from '@vue/reactivity';
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
 export default {
     name:"submitBar",
     components:{
-        
+
     },
-    setup() {
+    props:{
+        buttomType:{
+            type: Number,
+            default: 1,
+        }
+    },
+    setup(props) {
+        const router = useRouter();
+        const buttomContent = ref ('');
+        const store = useStore();
+        const goodsId =  ref([])
+        console.log(props.buttomType)
+
+        if(props.buttomType===1)
+        {
+        buttomContent.value = '提 交 订 单';
+         }
+         if(props.buttomType === 2)
+         {
+             buttomContent.value = '确 认 支 付'
+         }
+
+        const goOrderDetail=(buttomType)=>{
+            if(buttomType === 1)
+            {
+            store.state.shopCart.goods.filter(item=>item.isChecked===true).forEach(element => {
+            goodsId.value.push(element.id)
+            })
+            router.push({
+            path:'/order',
+            query:{
+                goodsId: goodsId.value,
+            } //改成query形式以防止id丢失
+            })
+            }
+            if(buttomType === 2)
+            {
+            router.push({path:'/user'})
+            }
+        }
+        return{
+            goOrderDetail,
+            buttomContent,
+            store,
+            goodsId
+        }
         
     },
 }
@@ -44,7 +92,7 @@ button{
     background-color: #111111;
     width: 300px;
     height: 45px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 200;
     color: aliceblue;
     margin-bottom: 10px;

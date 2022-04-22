@@ -2,7 +2,7 @@
     <div class='goods-info'>
         <img :src='item.cover_url' alt="">
         <div class ='goods-name' >{{item.name}}</div>
-        <div class = 'price'><div>￥</div>{{item.price}}</div>
+        <div class = 'price'>￥{{item.price}}/天</div>
         <button class='buy-button'>加入购物车</button>
     </div>
 </template>
@@ -27,13 +27,13 @@ export default {
 
 
 <style scoped>
-.price{
+/* .price{
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 5px;
   font-weight: bold
-}
+} */
 
 .goods-info img{
   width:100%;

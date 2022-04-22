@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import { getShopcartData } from '@/service/shopcart';
+import { stringifyStyle } from '@vue/shared';
 
 //全局变量
 const state ={
@@ -30,13 +31,14 @@ export default createStore({
     for(i in payload)
    {
     state.shopCart.totalNum += payload[i].num; 
-    state.shopCart.totalPrice += payload[i].price*payload[i].num; 
-    }
+    state.shopCart.totalPrice += payload[i].price*payload[i].num;
+  }
   }
 },
   actions:{
     updateCart({commit}){
       getShopcartData().then((res)=>{
+        console.log(res);
         commit('setShopCart',res.data.goods)
         commit('setShopNumAndPrice',res.data.goods)
       });
