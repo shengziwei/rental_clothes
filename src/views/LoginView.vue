@@ -12,6 +12,7 @@
             没有账号，立即注册
         </div>
         <button @click="onSubmit">SIGN IN</button>
+        <verify-img></verify-img>
     </div>
 </template>
 <script>
@@ -20,12 +21,13 @@ import { Notify } from "vant"
 import { loginRequest } from "@/service/user.js"
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import verifyImg from '@/components/utils/img_verify.vue'
 
 
 export default {
     name:'Login',
     components:{
-
+        verifyImg
     },
     setup() {
           const userInfo = reactive({
