@@ -20,8 +20,8 @@ export default {
   },
   setup(){
   onMounted(()=>{
-    const store = useStore();
-    store.dispatch("updateCart");
+    // const store = useStore();
+    // store.dispatch("updateCart");
   })
   }
 }
