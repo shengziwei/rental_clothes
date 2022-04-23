@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { ref,onMounted,reactive,toRefs } from 'vue';
+import { ref,onMounted,reactive,toRefs, toRef } from 'vue';
 import {useRoute} from'vue-router';
 import {getGoodsInfo} from '@/service/detail.js'
 import banner from '@/components/home/banner.vue';
@@ -56,7 +56,7 @@ TabControl
           getGoodsInfo(id.value).then(res=>{
               console.log(id.value);
               goodsInfo.info = res.data.info;
-              goodsInfo.comments = res.data.comments
+              goodsInfo.comments = res.data.comments;
           })
       });
 
@@ -65,11 +65,11 @@ TabControl
               console.log(res);
               if(res.data.status === 'success')
               {
-            if((store.state.shopCart.goods.filter(item=>item.id===id.value).length)===0)
+            if((store.state.shopCart.goods.filter(item=>item.id==id.value).length)===0)//第一个等于不需要严格相等
             {
                store.state.shopCart.goods.push(
                     {
-                        id:goodsInfo.info.id,
+                        id: id.value,
                         name:goodsInfo.info.name,
                         num: goodsNum.value,
                         price:goodsInfo.info.price,
@@ -82,7 +82,10 @@ TabControl
                 // store.dispatch('updateCart')//action的方法使用分发
                 }
                 else
-                console.log("############")  
+                {
+                store.state.shopCart.goods.filter(item=>item.id==id.value)[0].num += goodsNum.value
+                                store.commit("setShopNumAndPrice",store.state.shopCart.goods)
+                }
               }          
           
           })

@@ -58,6 +58,7 @@ export default ({
     vertical-align: middle;
     display: inline-block;
     background-size: 40px;
+    font-family: 'VisbyCF-Bold';
 }
 .logo{
     height: 50px;

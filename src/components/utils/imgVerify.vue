@@ -72,7 +72,7 @@ export default {
   ctx.fillStyle = randomColor(80, 150)
   /*
    * save() 方法把当前状态的一份拷贝压入到一个保存图像状态的栈中。
-   * 这就允许您临时地改变图像状态，
+   * 可以临时地改变图像状态，
    * 然后，通过调用 restore() 来恢复以前的值。
    * save是入栈，restore是出栈。
    * 用来保存Canvas的状态。save之后，可以调用Canvas的平移、放缩、旋转、错切、裁剪等操作。 restore：用来恢复Canvas之前保存的状态。防止save后对Canvas执行的操作对后续的绘制有影响。

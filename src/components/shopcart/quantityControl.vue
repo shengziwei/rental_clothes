@@ -35,14 +35,15 @@ export default {
             if(a===1)
           {
             num.value++;
-            store.state.shopCart.totalPrice+=store.state.shopCart.goods[props.index].price
+            store.state.shopCart.goods[props.index].num++
             }
             else
             if(num.value>=2)
             {num.value --;
-            store.state.shopCart.totalPrice-=store.state.shopCart.goods[props.index].price
+            store.state.shopCart.goods[props.index].num--
             }
             console.log(num.value)
+            store.commit("setShopNumAndPrice",store.state.shopCart.goods)
             modifyShopcartData(id,num.value).then(res=>{
                 console.log(res);
             })

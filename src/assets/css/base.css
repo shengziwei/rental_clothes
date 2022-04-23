@@ -19,7 +19,7 @@ body {
     background: var(--color-background);
     color: var(--color-text);
     width: 100vw ; /*占整个设备宽度*/
-    font-family: 'VisbyCF-Thin';
+    font-family: 'Times New Roman', Times, serif;
 }
 
 a {

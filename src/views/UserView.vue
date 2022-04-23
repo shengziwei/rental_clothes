@@ -25,7 +25,7 @@
       <div class='orderBox'>
           <div class='title'>
               <div class="my">我的订单</div>
-              <div class="toList" @click="$router.push({path:'/register'})">全部订单 ›</div>
+              <div class="toList" @click="$router.push({path:'/orderlist'})">全部订单 ›</div>
           </div>
           <div class="van-hairline--top"></div>
           <div class='order'>
@@ -120,6 +120,8 @@ export default{
     font-weight: bold;
     font-family: "VisbyCF-Bold";
     align-items: center;
+    align-content: center;
+    justify-content: center;
     justify-items: center;
     box-shadow: 0 8px 0px rgba(146, 145, 145, 0.2);
 }
@@ -130,8 +132,14 @@ export default{
 .balance{
     width: 50%
 }
+.balance div{
+    margin:0 40px
+}
 .point{
   width: 50%
+}
+.point div{
+    margin:0 40px
 }
 .title{
    display: flex;

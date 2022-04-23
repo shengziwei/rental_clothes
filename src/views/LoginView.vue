@@ -21,7 +21,7 @@ import { Notify } from "vant"
 import { loginRequest } from "@/service/user.js"
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import verifyImg from '@/components/utils/img_verify.vue'
+import verifyImg from '@/components/utils/imgVerify.vue'
 
 
 export default {
