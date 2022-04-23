@@ -30,19 +30,31 @@
           <div class="van-hairline--top"></div>
           <div class='order'>
               <div class='item'>
-              <img src="@/assets/images/order_pay.svg"/>
+              <img src="@/assets/images/order_pay.svg"/>  
+              <van-icon class='vab-icon' 
+              v-if="$store.state.orderlist.pay_num!=0"
+              :badge="$store.state.orderlist.pay_num" max="99"></van-icon>
               <div>待付款</div>
               </div>
               <div class='item'>
               <img src="@/assets/images/order_sending.svg"/>
+               <van-icon class='vab-icon' 
+               v-if="$store.state.orderlist.sending_num!=0"
+               :badge="$store.state.orderlist.sending_num" max="99"></van-icon>
               <div>待发货</div>
               </div>
               <div class='item'>
               <img src="@/assets/images/order_sended.svg"/>
+               <van-icon class='vab-icon' 
+               v-if="$store.state.orderlist.sended_num!=0"
+               :badge="$store.state.orderlist.sended_num" max="99"></van-icon>
               <div>已发货</div>
               </div>
               <div class='item'>
               <img src="@/assets/images/order_complete.svg"/>
+              <van-icon class='vab-icon' 
+              v-if="$store.state.orderlist.complete_num!=0"
+              :badge="$store.state.orderlist.complete_num" max="99"></van-icon>
               <div>已完成</div>
               </div>
           </div>
@@ -54,6 +66,8 @@
 <script>
 import { onMounted, ref, reactive, toRefs } from '@vue/runtime-core'
 import { getUserInfo } from '@/service/user'
+import { getOrderList } from '@/service/order'
+import { useStore } from 'vuex'
 
 export default{
     name: 'user',
@@ -68,6 +82,7 @@ export default{
             profile_img:null,
             membership: null
         })
+        const store = useStore();
 
         onMounted(()=>{
             getUserInfo().then(res=>{
@@ -78,6 +93,7 @@ export default{
                 userInfo.profile_img = res.data.profile_img
                 userInfo.membership = res.data.membership
             })
+                store.dispatch('setOrder')
         })
 
         return {
@@ -91,6 +107,9 @@ export default{
 
 
 <style scoped>
+.van-icon{
+    margin-bottom: 50px
+}
 .basicInfoBox{
     margin-top: 50px;
     padding: 10px;

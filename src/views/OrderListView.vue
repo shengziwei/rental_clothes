@@ -4,16 +4,18 @@
         color="black"
         title-active-color=""
         v-model:active="active"
+        @click-tab="tabClick"
         >
-        <van-tab title="全部"></van-tab>
-        <van-tab title="待付款"></van-tab>
-        <van-tab title="待发货"></van-tab>
-        <van-tab title="已发货"></van-tab>
-        <van-tab title="已完成"></van-tab>
+         <van-tab  v-for="item,index in ['全部','待付款','待发货','已发货','已完成']"
+         :title="item"></van-tab>
         </van-tabs>
+
         <div class="listBox">
-        <div v-if="orderListData" class="orderlist" v-for="item,index in orderListData" :key='index'>
+        <div v-if="chooseData" class="orderlist" v-for="item,index in chooseData" :key='index'>
             <order-list-item :item='item'></order-list-item>
+        </div>
+         <div class='warning'>
+            没有更多数据
         </div>
         </div>
 </div>
@@ -24,6 +26,7 @@ import { ref } from '@vue/reactivity'
 import orderListItem from '@/components/order/orderListItem.vue'
 import { onMounted } from '@vue/runtime-core';
 import {getOrderList} from '@/service/order.js'
+import { useStore } from 'vuex';
 
 export default {
     name: 'OrderListView',
@@ -32,18 +35,29 @@ export default {
     },
     setup() {
         const active = ref(0);
-        const orderListData = ref([])
+        const chooseData = ref([])
+        const store = useStore();
 
         onMounted(()=>{
-            getOrderList().then(res=>{
-                orderListData.value = res.orderList;
-                console.log(res)
-            })
+            console.log(store.state.orderlist.order)
+            chooseData.value = store.state.orderlist.order
         })
+
+        const tabClick=(index)=>{
+            console.log(index)
+            if(index.name == 0)
+            chooseData.value = store.state.orderlist.order;
+            else
+            chooseData.value =store.state.orderlist.order.filter(item=>item.order_status==index.name);
+            console.log(chooseData.value)
+        }
 
         return {
             active,
-            orderListData
+            tabClick,
+            chooseData,
+            store
+
         }
     },
 }
@@ -63,9 +77,16 @@ export default {
     width: 100%;
     height:100%;
     margin-top:20px;
-    padding-bottom: 30px;
 }
 .listBox{
-   padding-bottom: 40px
+   background:rgb(247, 247, 247);
+   padding-bottom: 60px
+}
+.orderlistView{
+    background:rgb(247, 247, 247);
+}
+.warning{
+    margin: 20px;
+    color: rgb(146, 146, 146);;
 }
 </style>

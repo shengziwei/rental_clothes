@@ -14,13 +14,14 @@
                  <div>￥{{item.price}}</div>
              </div>
         </div>
-        <div class='conclusion'>供{{item.totalNum}}件商品，合计<span>￥{{item.totalPrice}}</span></div>
+        <div class='conclusion'>共{{item.totalNum}}件商品，合计<span>￥{{item.totalPrice}}</span></div>
     </div>
 </template>
 
 
 <script>
 import { ref } from '@vue/reactivity';
+import { computed, nextTick, watch, watchEffect } from '@vue/runtime-core';
 export default {
     name: 'orderListItem',
     components:{
@@ -35,17 +36,21 @@ export default {
         }
     },
     setup(props) {
-        const status = ref("");
-        if(props.item.order_status === 0)
-        status.value = "未付款"
-        else if(props.item.order_status === 1)
-        status.value = '待发货'
-        else if(props.item.order_status === 2)
-        status.value = '已发货'
-        else
-        status.value = '已完成'
+        let index
 
-
+        const status = computed(()=>{
+            if( props.item.order_status === 1)
+            return "未付款"
+            else if( props.item.order_status=== 2)
+            return '待发货'
+            else if( props.item.order_status=== 3)
+            return '已发货'
+            else if( props.item.order_status=== 4)
+            return '已完成'
+        });
+        
+    
+        console.log(status.value)
 
 
         return{
@@ -75,7 +80,7 @@ export default {
     text-align: end;
 }
 .orderListItem{
-    box-shadow: 0 -1px 2px rgb(183, 181, 181);
+    box-shadow: 0 1px 1px rgb(183, 181, 181);
     border-radius: 10px;
     background-color: white;
     margin: 0 20px;
@@ -97,7 +102,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .conclusion{
@@ -105,6 +110,7 @@ export default {
     margin: 0 10px 10px;
 }
 .conclusion span{
+    font-size: 20px;
     color: brown;
 }
 

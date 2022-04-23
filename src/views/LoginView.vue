@@ -1,5 +1,13 @@
 <template>
-    <div class='login-view'>
+<div v-if='login==false' class= 'beforeLogin'>
+    <img src = "@/assets/images/logo.png">
+    <div class='warning'>请登陆后继续浏览</div>
+    <div class="before-login-button">
+    <button class='login' @click='toLogin'>登录</button>
+    <button class= 'cancle'>取消</button>
+    </div>
+</div>
+    <div v-if='login' class='login-view'>
          <img  src = "@/assets/images/logo.png">
         <div class='login-form'>
             <div class='title'>login</div>
@@ -8,15 +16,15 @@
             <div class='item'>password</div>
             <input type='password' v-model="password">
         </div>
-        <div class='link-register' @click="$router.push({path:'/register'})">
+        <!-- <div class='link-register' @click="$router.push({path:'/register'})">
             没有账号，立即注册
-        </div>
+        </div> -->
         <button @click="onSubmit">SIGN IN</button>
         <verify-img></verify-img>
     </div>
 </template>
 <script>
-import { reactive, toRefs } from '@vue/reactivity'
+import { reactive, ref, toRef, toRefs } from '@vue/reactivity'
 import { Notify } from "vant"
 import { loginRequest } from "@/service/user.js"
 import { useStore } from 'vuex'
@@ -36,6 +44,7 @@ export default {
         });
         const store = useStore();
         const router = useRouter();
+        const login = ref(false)
         
 
         const onSubmit = ()=>{
@@ -62,10 +71,15 @@ export default {
 
             }
         }
+        const toLogin=()=>{
+            login.value = true          
+        }
 
         return{
             ...toRefs(userInfo),
-            onSubmit
+            onSubmit,
+            login,
+            toLogin
         }
 
     },
@@ -115,7 +129,7 @@ input{
     margin: 0.4em 0 1.4em;
     border-radius: 0;
 }
-button{
+.login-view button{
     font-family: 'VisbyCF-Bold';
     font-weight: 700;
     letter-spacing: .06em;
@@ -133,6 +147,33 @@ button{
 .link-register{
     margin-bottom: 20px;
     color: brown;
+}
+.beforeLogin{
+    margin: 200px 0;
+}
+
+.warning{
+    color: brown;
+    font-size:13px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+button{
+    width: 300px;
+    margin: 10px 10px;
+    font-size: 16px;
+    border: brown solid 1px;
+    border-radius: 20px;
+}
+
+.login{
+    background-color: brown;
+    color:antiquewhite;
+}
+.cancle{
+    color:brown;
+    background-color: white;
 }
 </style>
 

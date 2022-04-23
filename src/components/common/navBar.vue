@@ -10,11 +10,12 @@
         </router-link>
         <div class='navBar-item'><img class='logo' src='@/assets/images/logo.png'></div>
         <router-link class='navBar-item' to="/shopcart">
-        <div class='icon'>
-            <van-badge :content="$store.state.shopCart.totalNum" max="9">           
-            <i class='iconfont icon-shopcart'></i>
-            </van-badge>
+        
+        <div class='icon'>            
+              <i class='iconfont icon-shopcart'></i> 
         </div>
+        <van-icon v-if='$store.state.shopCart.totalNum' :badge="$store.state.shopCart.totalNum" max="99">
+         </van-icon>  
         <div>购物车</div>
         </router-link>
         <router-link class='navBar-item' to="/user">

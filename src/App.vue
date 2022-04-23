@@ -20,8 +20,8 @@ export default {
   },
   setup(){
   onMounted(()=>{
-    const store = useStore();
-    store.dispatch("updateCart");
+    // const store = useStore();
+    // store.dispatch("updateCart");
   })
   }
 }
@@ -34,7 +34,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height:100vh;
   width: 100vw;
   margin-top: 45px;
 }

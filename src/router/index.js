@@ -6,7 +6,6 @@ const Home = () => import('@/views/HomeView.vue')
 const ShopCart = () => import('@/views/ShopCartView.vue')
 const Category = () => import('@/views/CategoryView.vue')
 const User = () => import('@/views/UserView.vue')
-const BeforeLogin = () => import('@/views/BeforeLoginView.vue')
 const Login = () => import('@/views/LoginView.vue')
 const Detail = () => import('@/views/DetailView.vue')
 const Register = () => import('@/views/RegisterView.vue') 
@@ -51,11 +50,6 @@ const routes = [
     component: User,
   },
   {
-    path: '/before_login',
-    name: 'beforeLogin',
-    component: BeforeLogin
-  },
-  {
     path: '/login',
     name: 'login',
     component: Login,
@@ -95,7 +89,7 @@ const router = createRouter({
    if(to.meta.isAuthRequired ===true && isLogin===false){
      console.log("***"+window.localStorage.getItem("token"))
      Notify("登陆后访问");
-     return next({name: "beforeLogin"})
+     return next({name: "login"})
    } 
   else
    {
