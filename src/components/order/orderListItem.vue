@@ -48,10 +48,6 @@ export default {
             else if( props.item.order_status=== 4)
             return '已完成'
         });
-        
-    
-        console.log(status.value)
-
 
         return{
             status

@@ -29,28 +29,28 @@
           </div>
           <div class="van-hairline--top"></div>
           <div class='order'>
-              <div class='item'>
+              <div class='item' @click ="$router.push({path:'/orderlist',query:{index: 1}})">
               <img src="@/assets/images/order_pay.svg"/>  
               <van-icon class='vab-icon' 
               v-if="$store.state.orderlist.pay_num!=0"
               :badge="$store.state.orderlist.pay_num" max="99"></van-icon>
               <div>待付款</div>
               </div>
-              <div class='item'>
-              <img src="@/assets/images/order_sending.svg"/>
+              <div class='item'  @click ="$router.push({path:'/orderlist',query:{index: 2}})">
+              <img src="@/assets/images/order_sended.svg"/>
                <van-icon class='vab-icon' 
                v-if="$store.state.orderlist.sending_num!=0"
                :badge="$store.state.orderlist.sending_num" max="99"></van-icon>
               <div>待发货</div>
               </div>
-              <div class='item'>
-              <img src="@/assets/images/order_sended.svg"/>
+              <div class='item'  @click ="$router.push({path:'/orderlist',query:{index: 3}})">
+              <img src="@/assets/images/order_sending.svg"/>
                <van-icon class='vab-icon' 
                v-if="$store.state.orderlist.sended_num!=0"
                :badge="$store.state.orderlist.sended_num" max="99"></van-icon>
               <div>已发货</div>
               </div>
-              <div class='item'>
+              <div class='item'  @click ="$router.push({path:'/orderlist',query:{index: 4}})">
               <img src="@/assets/images/order_complete.svg"/>
               <van-icon class='vab-icon' 
               v-if="$store.state.orderlist.complete_num!=0"
@@ -68,6 +68,7 @@ import { onMounted, ref, reactive, toRefs } from '@vue/runtime-core'
 import { getUserInfo } from '@/service/user'
 import { getOrderList } from '@/service/order'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default{
     name: 'user',
@@ -173,15 +174,15 @@ export default{
 }
 .order{
     display: flex;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight:bolder;
     align-items: center;
     justify-items: center;
     padding: 20px 0px;
     box-shadow: 0 8px 0px rgba(146, 145, 145, 0.2);
 }
 .item{
-    width: 25%
+   width: 25%
 }
 .order img{
     width:50px;

@@ -6,7 +6,7 @@
         v-model:active="active"
         @click-tab="tabClick"
         >
-         <van-tab  v-for="item,index in ['全部','待付款','待发货','已发货','已完成']"
+         <van-tab  v-for="item in ['全部','待付款','待发货','已发货','已完成']"
          :title="item"></van-tab>
         </van-tabs>
 
@@ -24,9 +24,10 @@
 <script>
 import { ref } from '@vue/reactivity'
 import orderListItem from '@/components/order/orderListItem.vue'
-import { onMounted } from '@vue/runtime-core';
+import { computed, onMounted } from '@vue/runtime-core';
 import {getOrderList} from '@/service/order.js'
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
 
 export default {
     name: 'OrderListView',
@@ -34,21 +35,27 @@ export default {
         orderListItem
     },
     setup() {
+        const route = useRoute();
         const active = ref(0);
         const chooseData = ref([])
         const store = useStore();
+        console.log(active)
 
         onMounted(()=>{
             console.log(store.state.orderlist.order)
-            chooseData.value = store.state.orderlist.order
+            active.value = Number(route.query.index)
+            initial(Number(route.query.index))
         })
 
         const tabClick=(index)=>{
-            console.log(index)
-            if(index.name == 0)
+         initial(index.name)
+        }
+
+        const initial = (tabNum) =>{
+            if(tabNum == 0)
             chooseData.value = store.state.orderlist.order;
             else
-            chooseData.value =store.state.orderlist.order.filter(item=>item.order_status==index.name);
+            chooseData.value =store.state.orderlist.order.filter(item=>item.order_status==tabNum);
             console.log(chooseData.value)
         }
 
@@ -56,7 +63,8 @@ export default {
             active,
             tabClick,
             chooseData,
-            store
+            store,
+            initial
 
         }
     },
@@ -65,7 +73,6 @@ export default {
 
 <style scoped>
 .nav{
-    height: 100%;
     width: 100%;
     margin-top: 50px;
     font-size: 100px;
@@ -83,6 +90,7 @@ export default {
    padding-bottom: 60px
 }
 .orderlistView{
+    height: 100%;
     background:rgb(247, 247, 247);
 }
 .warning{

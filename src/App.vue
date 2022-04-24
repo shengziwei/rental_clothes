@@ -35,6 +35,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   width: 100vw;
+  height:100%;
   margin-top: 45px;
 }
 
