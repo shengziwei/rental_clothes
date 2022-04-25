@@ -59,6 +59,11 @@
               </div>
           </div>
       </div>
+      <div class='otherBox' >
+            <img src="@/assets/images/address.svg" :style="{'width':'20px','height': '20px'}">
+            <div>我的收货地址</div>
+            <div>›></div>
+      </div>
 
     </div>
 </template>
@@ -112,7 +117,7 @@ export default{
     margin-bottom: 50px
 }
 .basicInfoBox{
-    margin-top: 50px;
+    margin-top: 45px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -187,5 +192,12 @@ export default{
 .order img{
     width:50px;
     height: 50px
+}
+.otherBox{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 30px 20px 20px;
+    box-shadow: 0 1px 0px rgba(146, 145, 145, 0.2);
 }
 </style>

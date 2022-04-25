@@ -124,6 +124,7 @@ export default {
 	margin-top: 10px;
 	position: relative;
 	height: 100vh;
+	background-color: rgb(247, 247, 247);
 }
 .content {
 	position: absolute;

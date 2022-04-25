@@ -47,24 +47,21 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .goods-list {
 	display: flex;
 	padding-bottom: 50px;
-	align-content: center;
-	font-size: 12px;
 	flex-wrap: wrap;
 	font-family: "VisbyCF-Bold";
 	font-weight: bold;
 	width: 100%;
-	height: 100%;
-	justify-content: center;
 }
 
 .goods-item {
     width: 36%;
-	margin: 20px 4% 10px;
-	padding: 0 3%;
+	background-color: white;
+	margin: 20px 6% 10px;
 	align-items: center;
+	border-radius: 10px;
 }
 </style>

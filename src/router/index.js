@@ -11,6 +11,8 @@ const Detail = () => import('@/views/DetailView.vue')
 const Register = () => import('@/views/RegisterView.vue') 
 const OrderList = () => import('@/views/OrderListView.vue')
 const Order = () =>import('@/views/OrderView.vue')
+const Search = () => import('@/views/SearchView.vue')
+const Address = () => import('@/views/AddressView.vue')
 
 const routes = [
   {
@@ -50,6 +52,14 @@ const routes = [
     component: User,
   },
   {
+    path: '/address',
+    name: 'address',
+    // meta:{
+    //   isAuthRequired: true
+    // },
+    component: Address,
+  },
+  {
     path: '/login',
     name: 'login',
     component: Login,
@@ -73,7 +83,14 @@ const routes = [
     path: '/order',
     name: 'Order',
     component: Order
-  }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
+  },
+  
+
 ]
 
 const router = createRouter({

@@ -1,11 +1,12 @@
 <template>
     <div class='orderView'>
-        <div class='addressBox'>
+        <div class='addressBox'  @click="$router.push({path:'/address'})">
           <img src="@/assets/images/address.svg">
-          <div class='address'>
+          <div  v-if='address' class='address'>
           <div class='name'>{{name}}</div>
           <div>{{address}}</div>
           </div>
+          <div v-else='address'>添加收货地址</div>
         </div>
         <div class="itemList">
         <div v-for="item,index in orderData" :key="index">

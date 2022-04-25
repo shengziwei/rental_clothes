@@ -67,7 +67,7 @@ export default {
     },
 }
 </script>
-<style>
+<style lang="scss" scoped>
 .submitBar{
     font-family:'VisbyCF-Bold';
     font-weight: bold;

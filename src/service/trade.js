@@ -11,7 +11,8 @@ export function payForGoods(id){
 }
 export function getAddress(uid){
     return request({
-    url: '/api/getAddress',
+    //url: '/api/getAddress',
+    url:'http://127.0.0.1:4523/mock/831965/api/getAddress',
     data:{
         uid
     },
@@ -20,7 +21,8 @@ export function getAddress(uid){
 }
 export function getOrderGoodsInfo(goodsId=[]){
     return request({
-    url: '/api/getOrderInfo',
+  //  url: '/api/getOrderInfo',
+    url: 'http://127.0.0.1:4523/mock/831965/api/getOrderInfo',
     data:{
         goodsId
     },

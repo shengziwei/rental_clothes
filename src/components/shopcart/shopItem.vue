@@ -42,7 +42,7 @@ export default {
     },
     setup() {
     const checked = ref(true);
-    const sore = useStore();
+    const store = useStore();
     const goods = ref([]);
     const goodsId = ref([]);
     onMounted(()=>{
@@ -59,6 +59,7 @@ export default {
         deleteShopcartData(id).then(res=>{
             console.log(res);
         })
+        store.commit("setShopNumAndPrice",store.state.shopCart.goods)
        // store.dispatch('updateCart');
     }
     const updatePrice = (index)=>{

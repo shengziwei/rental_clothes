@@ -33,7 +33,7 @@ export default ({
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 @import '@/assets/fonts/iconfont.css';
 .navBar{
     background-color: #fff1f1;
@@ -65,5 +65,7 @@ export default ({
     height: 50px;
     width: 50px
 }
-
+i{
+    font-size: 25px;
+}
 </style>
