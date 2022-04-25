@@ -15,7 +15,7 @@
 import shopItem from '@/components/shopcart/shopItem.vue'
 import {getShopcartData} from '@/service/shopcart.js'
 import { setup } from 'mockjs'
-import { onMounted, reactive, ref } from '@vue/runtime-core'
+import { capitalize, computed, onMounted, reactive, ref, watch } from '@vue/runtime-core'
 import submitBar from '@/components/shopcart/submit.vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
@@ -26,9 +26,12 @@ export default{
         submitBar
     },
     setup()	{
-        const cartData = ref([])
+        const cartData =computed(()=>{
+            return store.state.shopCart.goods
+        })
         const store = useStore();
         const router = useRouter();
+        console.log(cartData)
 
         onMounted(() => {
             // getShopcartData().then(res=>{
@@ -40,16 +43,15 @@ export default{
             // console.log(cartData.value)
             // store.state.shopCart.goods = cartData.value;
             // store.commit("setShopNumAndPrice",cartData.value)
-            //store.dispatch("updateCart");
-            cartData.value = store.state.shopCart.goods;
-           cartData.value.forEach(item=>
+           // store.dispatch("updateCart");
+		});
+
+            cartData.value.forEach(item=>
                item.isChecked = true
             )
             store.commit("setShopNumAndPrice",cartData.value)
             console.log("isChecked",cartData.value)
-            // })
-		});
-    
+        
         return {
             cartData
         }

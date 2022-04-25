@@ -25,7 +25,7 @@
       <div class='orderBox'>
           <div class='title'>
               <div class="my">我的订单</div>
-              <div class="toList" @click="$router.push({path:'/orderlist'})">全部订单 ›</div>
+              <div class="toList" @click="$router.push({path:'/orderlist',query:{index: 0}})">全部订单 ›</div>
           </div>
           <div class="van-hairline--top"></div>
           <div class='order'>
@@ -60,9 +60,10 @@
           </div>
       </div>
       <div class='otherBox' >
+          <div class='address' @click="$router.push('/address')">
             <img src="@/assets/images/address.svg" :style="{'width':'20px','height': '20px'}">
             <div>我的收货地址</div>
-            <div>›></div>
+          </div>
       </div>
 
     </div>
@@ -193,7 +194,7 @@ export default{
     width:50px;
     height: 50px
 }
-.otherBox{
+.address{
     display: flex;
     width: 100%;
     align-items: center;

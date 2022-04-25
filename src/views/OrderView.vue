@@ -3,7 +3,7 @@
         <div class='addressBox'  @click="$router.push({path:'/address'})">
           <img src="@/assets/images/address.svg">
           <div  v-if='address' class='address'>
-          <div class='name'>{{name}}</div>
+          <div class='name'>{{name}}  {{phone}}</div>
           <div>{{address}}</div>
           </div>
           <div v-else='address'>添加收货地址</div>
@@ -21,7 +21,8 @@
 import submitBar from '@/components/shopcart/submit.vue'
 import orderItem from '@/components/order/orderItem.vue'
 import { onMounted, reactive, ref, toRefs } from '@vue/runtime-core'
-import {getAddress, getOrderGoodsInfo} from '@/service/trade.js'
+import {getOrderGoodsInfo} from '@/service/trade.js'
+import {getAddress} from '@/service/address.js'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
@@ -35,6 +36,7 @@ export default {
         const addressInfo = reactive({
             name:null,
             address:null,
+            phone:null
         })
 
         const route = useRoute();
@@ -49,6 +51,7 @@ export default {
                 console.log(res);
                 addressInfo.name = res.data.name
                 addressInfo.address = res.data.address
+                addressInfo.phone = res.data.phone
                 })
 
             getOrderGoodsInfo().then(res=>{

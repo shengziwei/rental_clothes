@@ -13,6 +13,8 @@ const OrderList = () => import('@/views/OrderListView.vue')
 const Order = () =>import('@/views/OrderView.vue')
 const Search = () => import('@/views/SearchView.vue')
 const Address = () => import('@/views/AddressView.vue')
+const EditAddress = () => import('@/views/EditAddressView.vue')
+const Comment = ()=>import('@/views/CommentView.vue')
 
 const routes = [
   {
@@ -52,12 +54,28 @@ const routes = [
     component: User,
   },
   {
+    path: '/comment',
+    name: 'comment',
+    // meta:{
+    //   isAuthRequired: true
+    // },
+    component: Comment,
+  },
+  {
     path: '/address',
     name: 'address',
     // meta:{
     //   isAuthRequired: true
     // },
     component: Address,
+  },
+  {
+    path: '/edit_address',
+    name: 'EditAddress',
+    // meta:{
+    //   isAuthRequired: true
+    // },
+    component: EditAddress,
   },
   {
     path: '/login',

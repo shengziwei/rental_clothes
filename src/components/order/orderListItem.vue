@@ -95,6 +95,7 @@ export default {
     margin-right: 20px
 }
 .textInfo{
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -109,5 +110,6 @@ export default {
     font-size: 20px;
     color: brown;
 }
+
 
 </style>

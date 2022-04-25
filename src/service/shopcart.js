@@ -1,9 +1,9 @@
 import {request} from './base'
 
-export function getShopcartData(){
+export function getShopCartData(){
     return request({
-    url: '/api/getShopCartData',
-   // url:'http://127.0.0.1:4523/mock/831965/api/getShopCartData',
+    //url: '/api/getShopCartData',
+    url:'http://127.0.0.1:4523/mock/831965/api/getShopCartData',
     method: 'post'
 })
 }

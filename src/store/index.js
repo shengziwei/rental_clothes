@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { getShopcartData } from '@/service/shopcart';
+import { getShopCartData } from '@/service/shopcart';
 import  {getOrderList} from "@/service/order.js"
 
 //全局变量
@@ -31,6 +31,7 @@ export default createStore({
   },
     setShopCart(state, payload){
     state.shopCart.goods = payload;
+    console.log(state.shopCart.goods );
   },
   setShopNumAndPrice(state,payload){
     let i;
@@ -53,10 +54,10 @@ export default createStore({
 },
   actions:{
     updateCart({commit}){
-      getShopcartData().then((res)=>{
+      getShopCartData().then((res)=>{
         console.log(res);
-        commit('setShopCart',res.data.goods)
-        commit('setShopNumAndPrice',res.data.goods)
+        commit('setShopCart',res.data)
+        commit('setShopNumAndPrice',res.data)
       });
     },
     setOrder({commit}){
