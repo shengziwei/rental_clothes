@@ -23,6 +23,8 @@
             v-model="cascaderValue"
             title="请选择所在地区"
             :options="options"
+            active-color="#1989fa"
+            @close="show = false"    
             @finish="onFinish"
              />
              </van-popup>
@@ -118,8 +120,7 @@ export default {
       cascaderValue,
       ...toRefs(addressInfo),
       data,
-      onSave
-
+      onSave,
     };
   },
 };

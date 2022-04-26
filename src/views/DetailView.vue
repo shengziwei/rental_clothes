@@ -63,7 +63,7 @@ TabControl
       const addCart = () =>{
           addShopcartData(id.value,goodsNum.value).then(res=>{
               console.log(res);
-              if(res.data.status === 'success')
+              if(res.status === "success")
               {
             if((store.state.shopCart.goods.filter(item=>item.id==id.value).length)===0)//第一个等于不需要严格相等
             {

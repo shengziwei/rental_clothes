@@ -12,8 +12,7 @@ export function getHomeGoodsData(page = 1){
 
 export function getSearchResult(description=''){
     return request({
-    //url: '/api/getSearchResult',
-    url:"//127.0.0.1:4523/mock/831965/api/getSearchResult",
+    url: '/api/getSearchResult',
     data:{
         description
     },

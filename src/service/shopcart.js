@@ -2,8 +2,7 @@ import {request} from './base'
 
 export function getShopCartData(){
     return request({
-    //url: '/api/getShopCartData',
-    url:'http://127.0.0.1:4523/mock/831965/api/getShopCartData',
+    url: '/api/getShopCartData',
     method: 'post'
 })
 }
@@ -30,7 +29,7 @@ export function modifyShopcartData(goodsID,num){
 }
 export function deleteShopcartData(goodsID){
     return request({
-    url: '/api/modifyShopCartData',
+    url: '/api/deleteShopCartData',
     data:{
         goodsID
     },
