@@ -12,6 +12,7 @@
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex';
+import { submitOrder } from '@/service/order';
 export default {
     name:"submitBar",
     components:{
@@ -40,10 +41,11 @@ export default {
          }
 
         const goOrderDetail=(buttomType)=>{
+            console.log(store.state.shopCart.goods)
             if(buttomType === 1)
             {
-            store.state.shopCart.goods.filter(item=>item.isChecked===true).forEach(element => {
-            goodsId.value.push(element.id)
+            store.state.shopCart.goods.filter(item=>item.checked===true).forEach(element => {
+            goodsId.value.push(element.goodsId)
             })
             router.push({
             path:'/order',
@@ -54,7 +56,10 @@ export default {
             }
             if(buttomType === 2)
             {
-            router.push({path:'/user'})
+            //router.push({path:'/user'})
+            submitOrder(0,2).then(res=>{
+                console.log(res)
+            })
             }
         }
         return{

@@ -2,11 +2,11 @@
 <div class='detail-view'>
     
     <div class='detail-banner'>
-    <banner :bannerData=info.image></banner>
+    <banner :bannerData=info.gallery></banner>
     </div>
     <div class='basicInfo'>
         <div class = 'name'>{{info.name}}</div>
-        <div class = 'price'>￥{{info.price}}/天</div>
+        <div class = 'price'>￥{{info.counterPrice}}/天</div>
         <quantity-control class='quantity' @getNum="getNum"></quantity-control>
         <div class='button-area'>
         <button  @click='addCart'>加 入 购 物 车</button>
@@ -44,8 +44,10 @@ TabControl
           comments:[]
       })
       let id = ref(0);
+      let name = ref("")
       let goodsNum = ref(1);
-      id.value = route.query.id;   
+      id.value = route.query.id;  
+      name.value = route.query.name 
 
       const getNum = (num) =>{
           console.log("得到了",num);
@@ -54,7 +56,7 @@ TabControl
       
       onMounted(()=>{
           getGoodsInfo(id.value).then(res=>{
-              console.log(id.value);
+              console.log(res);
               goodsInfo.info = res.data.info;
               goodsInfo.comments = res.data.comments;
           })
@@ -63,31 +65,29 @@ TabControl
       const addCart = () =>{
           addShopcartData(id.value,goodsNum.value).then(res=>{
               console.log(res);
-              if(res.status === "success")
-              {
-            if((store.state.shopCart.goods.filter(item=>item.id==id.value).length)===0)//第一个等于不需要严格相等
-            {
-               store.state.shopCart.goods.push(
-                    {
-                        id: id.value,
-                        name:goodsInfo.info.name,
-                        num: goodsNum.value,
-                        price:goodsInfo.info.price,
-                        cover_url:goodsInfo.info.image[1]
-                    }
-                )
-                store.commit("setShopNumAndPrice",store.state.shopCart.goods)
-                // store.state.shopCart.totalNum+=goodsNum.value
-                // store.state.shopCart.totalPrice+=goodsNum.value*goodsInfo.info.price
-                // store.dispatch('updateCart')//action的方法使用分发
-                }
-                else
-                {
-                store.state.shopCart.goods.filter(item=>item.id==id.value)[0].num += goodsNum.value
-                                store.commit("setShopNumAndPrice",store.state.shopCart.goods)
-                }
-              }          
-          
+            //   if(res.errno=== 0)
+            //   {
+            // if((store.state.shopCart.goods.filter(item=>item.goodsId==id.value).length)===0)//第一个等于不需要严格相等
+            // {
+            //    store.state.shopCart.goods.push(
+            //         {
+            //             goodsId: id.value,
+            //             name:goodsInfo.info.name,
+            //             number: goodsNum.value,
+            //             price:goodsInfo.info.counterPrice,
+            //             picUrl:goodsInfo.info.picUrl
+            //         }
+            //     )
+            //     store.commit("setShopNumAndPrice",store.state.shopCart.goods)
+            //     // store.state.shopCart.totalNum+=goodsNum.value
+            //     // store.state.shopCart.totalPrice+=goodsNum.value*goodsInfo.info.price
+            //     // store.dispatch('updateCart')//action的方法使用分发
+            //     }
+            //     else
+            //     {
+            //    store.state.shopCart.goods.filter(item=>item.goodsId==id.value)[0].number += goodsNum.value
+                //store.commit("setShopNumAndPrice",store.state.shopCart.goods)
+                store.dispatch('updateCart')
           })
         }
 
@@ -98,7 +98,8 @@ TabControl
           getNum,
           addCart,
           goodsNum,
-          store      
+          store,
+          name  
      }
 }
 }

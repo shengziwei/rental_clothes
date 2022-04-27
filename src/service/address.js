@@ -9,8 +9,9 @@ export function getAddress(){
 
 export function getAddressList(){
     return request({
-    url: '/api/getAddressList',
-    method: 'post'
+    // url: '/api/getAddressList',
+    url:'http://localhost:8080/wx/address/list',
+    method: 'get'
 })
 }
 export function getAddressDetail(aid){

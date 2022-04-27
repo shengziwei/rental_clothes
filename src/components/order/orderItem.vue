@@ -1,11 +1,11 @@
 <template>
     <div class='orderItem'>
-        <img :src='item.cover_url'/>
+        <img :src='item.picUrl'/>
         <div class='infoBox'>
-            <div class='name'>{{item.name}}</div> 
+            <div class='name'>{{item.goodsName}}</div> 
             <div class='price'>￥{{item.price}}</div>
         </div>
-        <div class='num'>×{{item.num}}/天</div>
+        <div class='num'>×{{item.number}}/天</div>
     </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     margin-left: 40px;
-    width: 30%
+    width: 32%
 }
 .name{
     font-size: 16px;

@@ -27,24 +27,24 @@ export default {
         // const num = ref(1)
         const num = ref(1);
         const store = useStore();
-        const id =  store.state.shopCart.goods[props.index].id
+        const id =  store.state.shopCart.goods[props.index].goodsId
         
-        num.value = store.state.shopCart.goods[props.index].num
+        num.value = store.state.shopCart.goods[props.index].number
         
         const action = (a) =>{
             if(a===1)
           {
             num.value++;
-            store.state.shopCart.goods[props.index].num++
+            store.state.shopCart.goods[props.index].number++
             }
             else
             if(num.value>=2)
             {num.value --;
-            store.state.shopCart.goods[props.index].num--
+            store.state.shopCart.goods[props.index].number--
             }
             console.log(num.value)
             store.commit("setShopNumAndPrice",store.state.shopCart.goods)
-            modifyShopcartData(id,num.value).then(res=>{
+            modifyShopcartData(id,id,num.value).then(res=>{
                 console.log(res);
             })
             }

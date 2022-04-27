@@ -6,8 +6,8 @@ import shopCart from './shopCart.json'
 import address from './address.json'
 import order from './order.json'
 
-Mock.mock('https://happyRental/api/getHomeGoodsData','post',{code:0,data:data.home})
-Mock.mock('https://happyRental/api/getCategoryGoodsData','post',  function(option){
+Mock.mock('http://127.0.0.1:4523/mock/831965/api/getHomeGoodsData','post',{code:0,data:data.home})
+Mock.mock('http://127.0.0.1:4523/mock/831965/api/getCategoryGoodsData','post',  function(option){
 var $category=JSON.parse(option.body).category;
 if($category==-1)
 return Mock.mock({    

@@ -13,8 +13,9 @@ export function request(config){
     //请求拦截
     instance.interceptors.request.use(config=>{
         const token = window.localStorage.getItem("token");
+        console.log(config)
         if(token){
-            config.headers.Authorization = token;
+            config.headers['X-Litemall-Token']= token;
         }
         return config;
     },

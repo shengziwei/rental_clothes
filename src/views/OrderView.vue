@@ -22,7 +22,7 @@ import submitBar from '@/components/shopcart/submit.vue'
 import orderItem from '@/components/order/orderItem.vue'
 import { onMounted, reactive, ref, toRefs } from '@vue/runtime-core'
 import {getOrderGoodsInfo} from '@/service/trade.js'
-import {getAddress} from '@/service/address.js'
+import {getAddressList} from '@/service/address.js'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
@@ -36,7 +36,8 @@ export default {
         const addressInfo = reactive({
             name:null,
             address:null,
-            phone:null
+            phone:null,
+            id:null,
         })
 
         const route = useRoute();
@@ -47,21 +48,24 @@ export default {
 
         onMounted(()=>{
             console.log(goodsId)
-            getAddress().then(res=>{
-                console.log(res);
-                addressInfo.name = res.data.name
-                addressInfo.address = res.data.address
-                addressInfo.phone = res.data.phone
+            getAddressList().then(res=>{
+                console.log(res)
+                addressInfo.name = res.data.list[0].name
+                addressInfo.address = res.data.list[0].province+"/"+ res.data.list[0].city+"/"+res.data.list[0].county+" "+res.data.list[0].addressDetail
+                addressInfo.phone = res.data.list[0].tel
+                addressInfo.id = res.data.list[0].id
                 })
 
-            getOrderGoodsInfo().then(res=>{
-                console.log(res);
-                orderData.value = res.data;
-                orderData.value.forEach(element => {
-                    totalPrice.value+=element.num*element.price
-                });
-                store.state.shopCart.totalPrice = totalPrice.value
-            })
+            // getOrderGoodsInfo(goodsId).then(res=>{
+            //     console.log(res);
+            //     orderData.value = res.data;
+            //     orderData.value.forEach(element => {
+            //         totalPrice.value+=element.num*element.price
+            //     });
+            //     store.state.shopCart.totalPrice = totalPrice.value
+            // })
+            orderData.value  = store.state.shopCart.goods.filter(item=>item.checked===true)
+            console.log(orderData.value)
         })
 
         return{

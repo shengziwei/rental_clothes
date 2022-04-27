@@ -6,8 +6,8 @@
          <div class='addressBox'>
           <img src="@/assets/images/address.svg">
           <div class='address'>
-          <div class='name'>{{item.name}} {{item.phone}}</div>
-          <div>{{item.address}}</div>
+          <div class='name'>{{item.name}} {{item.tel}}</div>
+          <div>{{item.province}}/{{item.city}}/{{item.county}} {{item.addressDetail}}</div>
           </div>
          </div>
   <template #right>
@@ -37,7 +37,7 @@ export default {
         onMounted(()=>{
             getAddressList().then(res=>{
                 console.log(res);
-                addressList.value = res.data
+                addressList.value = res.data.list
             })
         })
         const deleteAddress=(index)=>{

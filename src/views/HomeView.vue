@@ -27,7 +27,7 @@
 <!--下拉刷新，上拉加载选用better-scroll开发-->
 
 <script>
-import { getHomeGoodsData } from '@/service/home.js';
+import { getHomeGoodsData, getID } from '@/service/home.js';
 import { ref, onMounted, reactive, watchEffect, nextTick } from 'vue';
 import axios from 'axios';
 import Banner from '@/components/home/banner.vue';
@@ -56,6 +56,7 @@ export default {
 				recommends.value = res.data.goods;
 				console.log(recommends.value);
 				console.log(homeBanner.value);
+				console.log(res)
 			});
 		});
 

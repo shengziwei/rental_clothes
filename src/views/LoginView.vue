@@ -12,7 +12,7 @@
         <div class='login-form'>
             <div class='title'>login</div>
             <div class='item'>username</div>
-            <input type= 'text' v-model="name">
+            <input type= 'text' v-model="username">
             <div class='item'>password</div>
             <input type='password' v-model="password">
         </div>
@@ -39,7 +39,7 @@ export default {
     },
     setup() {
           const userInfo = reactive({
-            name: '',
+            username: '',
             password:''
         });
         const store = useStore();
@@ -48,22 +48,26 @@ export default {
         
 
         const onSubmit = ()=>{
-            if(userInfo.name === '')
+            if(userInfo.username === '')
             Notify('账号或密码不能为空');
             else
             {
                 loginRequest(userInfo).then(res=>{
-                    if(res.data.status === '200'){
+                   //if(res.data.status === '200'){
+                    console.log(res);
+                    if(res.errno === 0){
                     Notify({type:'success',message:'登录成功'});
-                    let token = res.data.access_token;
-                    window.localStorage.setItem("access_token",token);
+                    let token = res.data.token;
+                    window.localStorage.setItem("token",token);
                     store.commit("setIsLogin",true); //调用commit触发mutation中的方法
                     store.dispatch("updateCart")
-                    }
             
                     setTimeout(()=>{
                         router.push({path:'/user'});
                     },1000)
+                    }
+                    else
+                    Notify({type:'warning',message:'账号或密码错误'});
                 })
                 //用户的登陆状态将被存储在vuex中，Vuex往往用于组件间传值（响应式）
                 //token信息将被存储在localstorage种，localstorage往往用于跨页面传值（非响应式）

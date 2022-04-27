@@ -2,17 +2,17 @@
 <div class='shopItem' >
 <div class='itemBox'>
     <div class='box'>
-  <van-checkbox v-model="checked" @change="updatePrice(index)" shape="square" checked-color="black"></van-checkbox>
+  <van-checkbox v-model="item.checked" @change="updatePrice(item.checked,item.goodsId,index)" shape="square" checked-color="black"></van-checkbox>
     </div>
- <div class='image'><img :src='item.cover_url'></div>
+ <div class='image'><img :src='item.picUrl'></div>
  <div class='goodsInfo'>
-     <div class='name'>{{item.name}}</div>
+     <div class='name'>{{item.goodsName}}</div>
      <div class='price'>￥{{item.price}}/天</div>
  </div> 
 </div>
  <div class='goodsControl'>
  <quantity-control class='quantity'  :index="index"></quantity-control>
- <div class='delete' @click='deleteItem(item.id,index)'>remove</div>
+ <div class='delete' @click='deleteItem(item.goodsId,index)'>remove</div>
  </div>
 </div>
 </template>
@@ -20,10 +20,10 @@
 <script>
 import { ref, toRefs } from '@vue/reactivity';
 import quantityControl from './quantityControl.vue';
-import { deleteShopcartData, getShopcartData, modifyShopcartData } from '@/service/shopcart';
+import { checkShopcartData, deleteShopcartData, getShopcartData, modifyShopcartData } from '@/service/shopcart';
 import { useStore } from 'vuex';
 import store from '@/store';
-import { onMounted } from '@vue/runtime-core';
+import { computed, nextTick, onMounted, watch, watchEffect } from '@vue/runtime-core';
 
 export default {
 	components: { quantityControl },
@@ -40,38 +40,51 @@ export default {
             default: 1
         }
     },
-    setup() {
+    setup(props) {
     const checked = ref(true);
     const store = useStore();
     const goods = ref([]);
     const goodsId = ref([]);
     onMounted(()=>{
-        goods.value = store.state.shopCart.goods;
+        goods.value = store.state.shopCart.goods
     })
-    
 
     const deleteItem = (id,index)=>{
-        if(checked.value===true)
-        store.state.shopCart.totalPrice-=goods.value[index].num*goods.value[index].price;
+        // if(checked.value===true)
+        // store.state.shopCart.totalPrice-=goods.value[index].num*goods.value[index].price;
 
-        goods.value.splice(index,1)
+       goods.value.splice(index,1)
 
-        deleteShopcartData(id).then(res=>{
+        let productIds = ref([]);
+        productIds.value.push(id)
+
+        deleteShopcartData(productIds.value).then(res=>{
             console.log(res);
         })
-        store.commit("setShopNumAndPrice",store.state.shopCart.goods)
-       // store.dispatch('updateCart');
-    }
-    const updatePrice = (index)=>{
-        if(checked.value===false)
+      }
+
+    const updatePrice = (checked,id,index)=>{
+        console.log(checked)
+          let productIds = ref([]);
+        productIds.value.push(id)
+
+        if(checked==true)
         {
-            store.state.shopCart.totalPrice-=(goods.value[index].num*goods.value[index].price)
+            store.state.shopCart.totalPrice-=(goods.value[index].number*goods.value[index].price)
             goods.value[index].isChecked = false;
+            checkShopcartData(productIds.value,1).then(res=>{
+                console.log(res)
+            })
         }
-         if(checked.value===true)
+        
+         if(checked==false)
         {
-            store.state.shopCart.totalPrice+=(goods.value[index].num*goods.value[index].price)
+            store.state.shopCart.totalPrice+=(goods.value[index].number*goods.value[index].price)
             goods.value[index].isChecked = true;
+              checkShopcartData(productIds.value,0).then(res=>{
+                console.log(res)
+            })
+        store.commit("setShopNumAndPrice",store.state.shopCart.goods)
 
         }
 

@@ -5,7 +5,9 @@ import  {getOrderList} from "@/service/order.js"
 //全局变量
 const state ={
   user: {
-    isLogin: window.localStorage.getItem("token")? true:false
+    isLogin: window.localStorage.getItem("token")? true:false,
+    balance:100,
+    points:100
   },
   shopCart: {
     goods:[],
@@ -34,13 +36,15 @@ export default createStore({
     console.log(state.shopCart.goods );
   },
   setShopNumAndPrice(state,payload){
+    console.log(payload)
     let i;
     state.shopCart.totalNum = 0;
     state.shopCart.totalPrice = 0;
+    payload = payload.filter(item=>item.checked == true)
     for(i in payload)
    {
-    state.shopCart.totalNum += payload[i].num; 
-    state.shopCart.totalPrice += payload[i].price*payload[i].num;
+    state.shopCart.totalNum += payload[i].number; 
+    state.shopCart.totalPrice += payload[i].price*payload[i].number;
   }
   },
   setOrder(state,payload){
@@ -55,9 +59,9 @@ export default createStore({
   actions:{
     updateCart({commit}){
       getShopCartData().then((res)=>{
-        console.log(res);
-        commit('setShopCart',res.data)
-        commit('setShopNumAndPrice',res.data)
+        console.log(res.data);
+        commit('setShopCart',res.data.cartList)
+        commit('setShopNumAndPrice',res.data.cartList)
       });
     },
     setOrder({commit}){

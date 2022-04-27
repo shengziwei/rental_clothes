@@ -94,11 +94,16 @@ export default{
         onMounted(()=>{
             getUserInfo().then(res=>{
                 console.log(res);
-                userInfo.name = res.data.name;
-                userInfo.balance= res.data.balance;
-                userInfo.points =res.data.points;
-                userInfo.profile_img = res.data.profile_img
-                userInfo.membership = res.data.membership
+                userInfo.name = res.data.nickName;
+                // userInfo.name = res.data.name;
+                //userInfo.balance= res.data.balance;
+                userInfo.balance = 100;
+                //userInfo.points =res.data.points;
+                userInfo.points = 100;
+                userInfo.profile_img = res.data.avatar
+                //userInfo.profile_img = res.data.profile_img
+                //userInfo.membership = res.data.membership
+                userInfo.membership = '钻石会员'
             })
                 store.dispatch('setOrder')
         })

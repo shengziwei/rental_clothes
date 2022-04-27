@@ -10,7 +10,8 @@ export function registerRequest(data){
 
 export function loginRequest(data){
     return request({
-    url: '/api/login',
+    //url:'/api/login'
+    url: 'http://localhost:8080/wx/auth/login',
     data,
     method: 'post'
 })
@@ -18,8 +19,10 @@ export function loginRequest(data){
 
 export function getUserInfo(data){
     return request({
-    url: '/api/getUserInfo',
+    //url:'/api/getUserInfo'
+    url: 'http://localhost:8080/wx/auth/info',
     data,
-    method: 'post'
+    //method: 'post'
+    method:'get'
 })
 }
