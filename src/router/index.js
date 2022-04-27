@@ -15,6 +15,7 @@ const Search = () => import('@/views/SearchView.vue')
 const Address = () => import('@/views/AddressView.vue')
 const EditAddress = () => import('@/views/EditAddressView.vue')
 const Comment = ()=>import('@/views/CommentView.vue')
+const OrderDetail = ()=>import('@/views/OrderDetailView.vue')
 
 const routes = [
   {
@@ -60,6 +61,14 @@ const routes = [
     //   isAuthRequired: true
     // },
     component: Comment,
+  },
+  {
+    path: '/order_detail',
+    name: 'orderDetail',
+    // meta:{
+    //   isAuthRequired: true
+    // },
+    component: OrderDetail,
   },
   {
     path: '/address',

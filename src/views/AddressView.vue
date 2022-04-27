@@ -11,8 +11,8 @@
           </div>
          </div>
   <template #right>
-    <button class='swipeButton' @click="goEdit(index)">编辑</button>
-      <button class='swipeButton' @click='deleteAddress(index)'>删除</button>
+    <button class='swipeButton' @click="goEdit(item.id)">编辑</button>
+      <button class='swipeButton' @click='onDelete(item.id,index)'>删除</button>
   </template>
 </van-swipe-cell>
        </div>
@@ -23,7 +23,7 @@
 
 <script>
 import { onMounted, ref } from '@vue/runtime-core'
-import { getAddressList } from '@/service/address'
+import { deleteAddress, getAddressList } from '@/service/address'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -40,14 +40,19 @@ export default {
                 addressList.value = res.data.list
             })
         })
-        const deleteAddress=(index)=>{
+        const onDelete=(id,index)=>{
             addressList.value.splice(index,1)
+            deleteAddress(id).then(res=>{
+                console.log(res);
+            })
+            
+            
         }
-        const goEdit=(index)=>{
+        const goEdit=(id)=>{
             router.push({
                 path:'/edit_address',
                 query: {
-                    aid:addressList.value[index].aid
+                   id
                 }
             })
 
@@ -55,7 +60,7 @@ export default {
 
         return{
             addressList,
-            deleteAddress,
+            onDelete,
             goEdit
         }
     },

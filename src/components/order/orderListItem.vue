@@ -1,17 +1,17 @@
 <template>
-    <div class='orderListItem'>
+    <div class='orderListItem' @click='goOrderDetail(item.id)'>
         <div class="orderInfo">
-            <div class='number'>订单编号：{{item.orderId}}</div>
+            <div class='number'>订单编号：{{item.orderSn}}</div>
             <div class='status'>{{status}}</div>
         </div>
         <div class="van-hairline--surround"></div>
         <div class='infoBox'>
-            <img :src="item.cover_img" 
+            <img :src="item.goodsList[0].picUrl" 
             alt="img"
              width="80px" height="80px"/>
              <div  class='textInfo'>
-                 <div>{{item.name}}</div>
-                 <div>￥{{item.price}}</div>
+                 <div>{{item.goodsList[0].goodsName}}</div>
+                 <div>￥{{item.goodsList[0].price}}</div>
              </div>
         </div>
         <div class='conclusion'>共{{item.totalNum}}件商品，合计<span>￥{{item.totalPrice}}</span></div>
@@ -22,6 +22,8 @@
 <script>
 import { ref } from '@vue/reactivity';
 import { computed, nextTick, watch, watchEffect } from '@vue/runtime-core';
+import UserViewVue from '@/views/UserView.vue';
+import { useRouter } from 'vue-router';
 export default {
     name: 'orderListItem',
     components:{
@@ -37,20 +39,32 @@ export default {
     },
     setup(props) {
         let index
+        const router = useRouter();
 
         const status = computed(()=>{
-            if( props.item.order_status === 1)
+            if( Number(props.item.order_status) === 1)
             return "未付款"
-            else if( props.item.order_status=== 2)
+            else if( Number(props.item.order_status) === 2)
             return '待发货'
-            else if( props.item.order_status=== 3)
+            else if(Number(props.item.order_status) === 3)
             return '已发货'
-            else if( props.item.order_status=== 4)
+            else if(Number(props.item.order_status) === 4)
             return '已完成'
         });
 
+        const goOrderDetail=(orderId)=>{
+            router.push({
+                path:'/order_detail',
+                query:{
+                    orderId
+                }
+            })
+
+        }
+
         return{
-            status
+            status,
+            goOrderDetail
         }
     },
 }

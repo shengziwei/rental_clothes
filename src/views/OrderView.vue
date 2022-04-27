@@ -13,7 +13,7 @@
             <order-item :item="item"></order-item>
         </div>
         </div>
-       <submit-bar class="submit" :buttomType=2></submit-bar>
+       <submit-bar class="submit" :buttomType=2 :aid='id'></submit-bar>
     </div>
 </template>
 
@@ -115,7 +115,7 @@ export default {
     background-color: white;
     box-shadow: 0 -3px 4px rgba(146, 145, 145, 0.2);
     position: fixed;
-    bottom:49px;
+    bottom:50px;
     width:100%
 }
 .itemList{

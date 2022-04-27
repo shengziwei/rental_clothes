@@ -47,10 +47,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .goods-list {
 	display: flex;
-	padding-bottom: 50px;
+	padding-bottom: 100px;
 	flex-wrap: wrap;
 	font-family: "VisbyCF-Bold";
 	font-weight: bold;

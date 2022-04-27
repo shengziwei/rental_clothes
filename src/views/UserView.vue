@@ -15,11 +15,11 @@
       <div class='moneyBox'>
           <div class='balance'>
               <img src="@/assets/images/balance.svg"/>
-              <div>￥{{balance}}</div>
+              <div>￥{{$store.state.user.balance}}</div>
           </div>
           <div class='point'>
                 <img src="@/assets/images/point.svg"/>
-              <div>{{points}}</div>
+              <div>{{$store.state.user.points}}</div>
           </div>
       </div>
       <div class='orderBox'>

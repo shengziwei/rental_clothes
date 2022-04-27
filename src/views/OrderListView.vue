@@ -42,6 +42,7 @@ export default {
         console.log(active)
 
         onMounted(()=>{
+            store.dispatch('setOrder')
             console.log(store.state.orderlist.order)
             active.value = Number(route.query.index)
             initial(Number(route.query.index))
@@ -55,10 +56,21 @@ export default {
             if(tabNum == 0)
             chooseData.value = store.state.orderlist.order;
             else
-            chooseData.value =store.state.orderlist.order.filter(item=>item.order_status==tabNum);
-            console.log(chooseData.value)
+            chooseData.value =store.state.orderlist.order.filter(item=>Number(item.order_status==tabNum));
+            chooseData.value.forEach((item)=>{
+                let num=0;
+                let price=0;
+                item.goodsList.forEach(element=>{
+                     num +=  element.number
+                     price += element.number*element.price
+                })
+                item.totalNum=num
+                item.totalPrice = price
+            })
+              console.log(chooseData.value)
         }
 
+      
         return {
             active,
             tabClick,

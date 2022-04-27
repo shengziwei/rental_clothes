@@ -53,7 +53,8 @@ export default {
         // if(checked.value===true)
         // store.state.shopCart.totalPrice-=goods.value[index].num*goods.value[index].price;
 
-       goods.value.splice(index,1)
+      store.state.shopCart.goods.splice(index,1)
+       store.commit("setShopNumAndPrice",store.state.shopCart.goods)
 
         let productIds = ref([]);
         productIds.value.push(id)
@@ -70,7 +71,7 @@ export default {
 
         if(checked==true)
         {
-            store.state.shopCart.totalPrice-=(goods.value[index].number*goods.value[index].price)
+            store.state.shopCart.totalPrice+=(goods.value[index].number*goods.value[index].price)
             goods.value[index].isChecked = false;
             checkShopcartData(productIds.value,1).then(res=>{
                 console.log(res)
@@ -79,7 +80,7 @@ export default {
         
          if(checked==false)
         {
-            store.state.shopCart.totalPrice+=(goods.value[index].number*goods.value[index].price)
+            store.state.shopCart.totalPrice-=(goods.value[index].number*goods.value[index].price)
             goods.value[index].isChecked = true;
               checkShopcartData(productIds.value,0).then(res=>{
                 console.log(res)

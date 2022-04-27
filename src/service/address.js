@@ -14,21 +14,47 @@ export function getAddressList(){
     method: 'get'
 })
 }
-export function getAddressDetail(aid){
+// export function getAddressDetail(aid){
+//     return request({
+//     url:'/api/getAddressDetail',
+//     data:{
+//         aid
+//     },
+//     method: 'post'
+// })
+// }
+export function getAddressDetail(id){
     return request({
-    url:'/api/getAddressDetail',
+    url:'http://localhost:8080/wx/address/detail',
+    params:{
+        id
+    },
+    method: 'get'
+})
+}
+
+// export function saveAddress(data){
+//     return request({
+//     url: '/api/getAddressDetail',
+//     data,
+//     method: 'post'
+// })
+export function saveAddress(address){
+    return request({
+    url: 'http://localhost:8080/wx/address/save',
+    data:address,
+    method: 'post'
+})
+}
+
+export function deleteAddress(id){
+    return request({
+    url: 'http://localhost:8080/wx/address/delete',
     data:{
-        aid
+        id
     },
     method: 'post'
 })
 }
 
-export function saveAddress(data){
-    return request({
-    url: '/api/getAddressDetail',
-    data,
-    method: 'post'
-})
-}
 

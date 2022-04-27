@@ -12,8 +12,13 @@
         <button  @click='addCart'>加 入 购 物 车</button>
         </div>
     </div>
-    <tab-control :titles="['商品详情','评论','相关推荐']"></tab-control> 
-
+    <tab-control :titles="['商品详情','评论']"></tab-control> 
+    <div class='commentList' v-for="item in comments" :key='item'>
+        <comment :item='item'></comment>
+    </div>
+    <div class='detailInfo'>
+    </div>
+     
 </div>
 </template>
 
@@ -28,12 +33,14 @@ import { addShopcartData} from '@/service/shopcart.js'
 import { useStore } from 'vuex';
 import { getHomeGoodsData } from '@/service/home';
 import { GridItem } from 'vant';
+import Comment from '@/components/detail/commentItem.vue'
 
 export default{
 	components: { 
         banner,
         QuantityControl,
-TabControl
+        TabControl,
+        Comment
      },
   setup(){
       const route = new useRoute();
@@ -58,7 +65,7 @@ TabControl
           getGoodsInfo(id.value).then(res=>{
               console.log(res);
               goodsInfo.info = res.data.info;
-              goodsInfo.comments = res.data.comments;
+              goodsInfo.comments = res.data.comment.data;
           })
       });
 

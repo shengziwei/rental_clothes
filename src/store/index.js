@@ -49,10 +49,10 @@ export default createStore({
   },
   setOrder(state,payload){
     state.orderlist.order = payload
-    state.orderlist.pay_num = state.orderlist.order.filter(item=>item.order_status==1).length;
-    state.orderlist.sending_num = state.orderlist.order.filter(item=>item.order_status==2).length;
-    state.orderlist.sended_num = state.orderlist.order.filter(item=>item.order_status==3).length;
-    state.orderlist.complete_num = state.orderlist.order.filter(item=>item.order_status==4).length;
+    state.orderlist.pay_num = state.orderlist.order.filter(item=>Number(item.order_status)===1).length;
+    state.orderlist.sending_num = state.orderlist.order.filter(item=>Number(item.order_status)===2).length;
+    state.orderlist.sended_num = state.orderlist.order.filter(item=>Number(item.order_status)===3).length;
+    state.orderlist.complete_num = state.orderlist.order.filter(item=>Number(item.order_status)===4).length;
     state.orderlist.all_num = state.orderlist.order.length;
   }
 },
@@ -67,7 +67,7 @@ export default createStore({
     setOrder({commit}){
       getOrderList().then((res)=>{
         console.log(res);
-        commit('setOrder',res.orderList)
+        commit('setOrder',res.data.list)
       })
     }
   },

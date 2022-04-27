@@ -28,7 +28,7 @@
             @finish="onFinish"
              />
              </van-popup>
-        <van-field v-model="detail_address"
+        <van-field v-model="address"
              label="详细地址"
              placeholder="请填写"
         >
@@ -52,7 +52,7 @@ export default {
         name:null,
         phone:null,
         county:null,
-        detail_address:null
+        address:null
     })
     // 选项列表，children 代表子选项，支持多级嵌套
     const options =ref([])
@@ -60,13 +60,14 @@ export default {
     const router = useRouter();
 
     onMounted(()=>{
-      if(route.query.aid)
+      if(route.query.id)
       {
-      getAddressDetail(route.query.aid).then(res=>{
+      getAddressDetail(route.query.id).then(res=>{
+        console.log(res)
         addressInfo.name = res.data.name
-        addressInfo.phone = res.data.phone
-        addressInfo.county = res.data.address
-        addressInfo.detail_address = res.data.addressDetail
+        addressInfo.phone = res.data.tel
+        addressInfo.county = res.data.province+"/"+ res.data.city+"/"+res.data.county
+        addressInfo.address = res.data.addressDetail
         fieldValue.value = addressInfo.county
       })
       }
@@ -97,8 +98,28 @@ export default {
     });
 
     const onSave=()=>{
-      console.log("hello")
-        saveAddress(addressInfo).then(res=>{
+      let arr = fieldValue.value.split('/')
+      // let address = reactive({
+      //   id:route.query.id,
+      //   name: name,
+      //   province:arr[0],
+      //   city: arr[1],
+      //   county: arr[2],
+      //   addressDetail: addressInfo.address,
+      //   tel:addressInfo.phone
+      // })
+      let address={
+            id: route.query.id,
+            name: addressInfo.name,
+            tel: addressInfo.phone,
+            province: arr[0],
+            city: arr[1],
+            county: arr[2],
+            areaCode: "110101",
+            addressDetail: addressInfo.address,
+            isDefault: true
+      }
+        saveAddress(address).then(res=>{
           console.log(res)
           if(res.status==='success')   
           router.go(-1)  

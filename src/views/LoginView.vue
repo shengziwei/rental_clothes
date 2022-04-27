@@ -19,8 +19,8 @@
         <!-- <div class='link-register' @click="$router.push({path:'/register'})">
             没有账号，立即注册
         </div> -->
+           <verify-img></verify-img>
         <button @click="onSubmit">SIGN IN</button>
-        <verify-img></verify-img>
     </div>
 </template>
 <script>
