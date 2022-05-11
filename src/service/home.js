@@ -11,12 +11,21 @@ export function getHomeGoodsData(page = 1){
 })
 }
 
-export function getSearchResult(description=''){
+// export function getSearchResult(description=''){
+//     return request({
+//     url: '/api/getSearchResult',
+//     data:{
+//         description
+//     },
+//     method: 'post'
+// })
+// }
+export function getSearchResult(description){
     return request({
-    url: '/api/getSearchResult',
-    data:{
-        description
+    url: 'http://localhost:8080/wx/goods/list',
+    params:{
+        keyword:description
     },
-    method: 'post'
+    method: 'get'
 })
 }

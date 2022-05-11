@@ -60,8 +60,11 @@ export default createStore({
     updateCart({commit}){
       getShopCartData().then((res)=>{
         console.log(res.data);
+        if(res.data)
+        {
         commit('setShopCart',res.data.cartList)
         commit('setShopNumAndPrice',res.data.cartList)
+        }
       });
     },
     setOrder({commit}){

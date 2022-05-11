@@ -4,13 +4,18 @@
         <div class='infoBox'>
             <div class='name'>{{item.goodsName}}</div> 
             <div class='price'>￥{{item.price}}</div>
-                <button v-if='status===4' @click="goFather(item.id)">去 评 价</button>
+                <button v-if='status===4&&isComment===0' @click="goFather(item.id)">去 评 价</button>
+                  <button v-if='isComment!=0&&status===4' @click="goFather(-1)">已 评 价</button>
         </div>
         <div class='num'>×{{item.number}}/天</div>
     </div>
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
+import { Notify } from 'vant';
+import { useRoute, useRouter } from 'vue-router';
+
 export default {
     name: "orderItem",
     components:{
@@ -29,13 +34,23 @@ export default {
         }
     },
     setup(props,{emit}) {
+        const isComment = ref(0)
+        isComment.value = props.item.comment
+        const router = useRouter()
+
         console.log(props.item);
         const goFather=(orderGoodsId)=>{
+            if(orderGoodsId===-1)
+            {
+             Notify({type:'danger',message:'订单商品已评价'})
+             setTimeout(()=>{ router.push({path:'/orderlist',query:{index:4}})},2000)
+            }
             console.log(orderGoodsId)
             emit('getCommentInfo',orderGoodsId)
         }
         return{
-            goFather
+            goFather,
+            isComment
         }
     },
 }

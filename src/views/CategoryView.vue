@@ -95,7 +95,7 @@ export default {
         
     
         const tabClick = (index) => {
-            let types = ['time','price','sale'];
+            let types = ['id','counterPrice','id'];
             console.log(sortByKey(goodsData.value,types[index]));
             currentType.value = types[index];
             console.log(currentType.value)

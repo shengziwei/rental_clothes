@@ -86,7 +86,6 @@ export default {
                 console.log(res)
             })
         store.commit("setShopNumAndPrice",store.state.shopCart.goods)
-
         }
 
     }

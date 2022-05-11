@@ -65,6 +65,7 @@
             <div>我的收货地址</div>
           </div>
       </div>
+      <button @click='logout'>退 出 登 录</button>
 
     </div>
 </template>
@@ -90,6 +91,7 @@ export default{
             membership: null
         })
         const store = useStore();
+        const router = useRouter();
 
         onMounted(()=>{
             getUserInfo().then(res=>{
@@ -106,10 +108,17 @@ export default{
                 userInfo.membership = '钻石会员'
             })
                 store.dispatch('setOrder')
+                store.dispatch("updateCart")
         })
+        const logout=()=>{
+            store.state.user.isLogin = false
+            window.localStorage.clear()
+            window.location.reload()
+        }
 
         return {
-           ...toRefs(userInfo)
+           ...toRefs(userInfo),
+           logout
         }
 
     }
@@ -205,5 +214,16 @@ export default{
     align-items: center;
     padding: 30px 20px 20px;
     box-shadow: 0 1px 0px rgba(146, 145, 145, 0.2);
+}
+button{
+    border-radius: 0px;
+    border: 0px;
+    background-color: #111111;
+    width: 150px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: 200;
+    color: aliceblue;
+    margin: 20px 20px
 }
 </style>

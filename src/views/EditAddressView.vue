@@ -121,7 +121,7 @@ export default {
       }
         saveAddress(address).then(res=>{
           console.log(res)
-          if(res.status==='success')   
+          if(res.errno===0)   
           router.go(-1)  
         addressInfo.value =null
         })

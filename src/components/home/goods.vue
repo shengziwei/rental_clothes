@@ -1,9 +1,9 @@
 <template>
     <div class='goods-info'>
-        <img :src='item.cover_url' alt="">
+        <img :src='item.picUrl' alt="">
         <div class ='goods-name' >{{item.name}}</div>
         <div class='buyBox'>
-        <div class = 'price'>￥{{item.price}}/天</div>
+        <div class = 'price'>￥{{item.counterPrice}}/天</div>
         <div class='icon'><i class='iconfont icon-shopcart'></i></div>
         </div>
     </div>

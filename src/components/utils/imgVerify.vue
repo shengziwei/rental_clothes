@@ -7,7 +7,8 @@
 <script type="text/ecmascript-6">
 import { reactive, onMounted, ref, toRefs } from 'vue'
 export default {
- setup() {
+
+ setup(props,{emit}) {
  const verify = ref(null)
  const state = reactive({
   pool: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', // 字符串
@@ -18,11 +19,15 @@ export default {
  onMounted(() => {
   // 初始化绘制图片验证码
   state.imgCode = draw()
+   emit('getCode',state.imgCode)
+
  })
+
  
  // 点击图片重新绘制
  const handleDraw = () => {
   state.imgCode = draw()
+    emit('getCode',state.imgCode)
  }
 
  // 随机数

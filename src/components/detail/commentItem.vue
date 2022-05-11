@@ -29,9 +29,7 @@ export default {
             }
         }
     },
-    setup(props) {
-        console.log(props.item);
-        
+    setup(props) {    
     },
 }
 </script>
@@ -42,19 +40,24 @@ export default {
     width: 100%;
     font-family: 'ViscyCF-Bold';
     justify-content: space-evenly;
+    background: rgba(248, 216, 216, 0.73);
+    margin-bottom: 5px;
+    border-radius: 20px;
 }
 .commentBox{
     width: 40%;
     text-align: left;
+    margin:10px
 
 }
 .name{
-    font-size:18px;
+    font-size:17px;
     font-family: 'VisbyCF-Bold';
     font-weight:bold;
     margin-bottom:10px
 }
 .time{
     margin-top:50px;
+    margin-right:5px
 }
 </style>

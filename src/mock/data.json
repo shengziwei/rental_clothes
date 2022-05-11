@@ -7,51 +7,51 @@
     "goods":[
         {
             "id": 1,
-            "price": 2.00,
+            "counterPrice": 2.00,
             "name": "白色荷叶边衬衣1",
-            "cover_url": "https://s1.ax1x.com/2022/04/21/LccKmD.jpg"
+            "picUrl": "https://s1.ax1x.com/2022/04/21/LccKmD.jpg"
         },
         {
             "id": 2,
-            "price": 2.00,
+            "counterPrice": 2.00,
             "name": "白色荷叶边衬衣2",
-            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
         },
         {
             "id": 3,
-            "price": 2.00,
+            "counterPrice": 2.00,
             "name": "白色荷叶边衬衣3",
-            "cover_url": "https://s1.ax1x.com/2022/04/21/LccKmD.jpg"
+            "picUrl": "https://s1.ax1x.com/2022/04/21/LccKmD.jpg"
         },
         {
             "id": 4,
-            "price": 2.00,
+            "counterPrice": 2.00,
             "name": "测试选项卡tshirt4",
-            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
         },
         {
             "id": 7,
-            "price": 10.00,
+            "counterPrice": 10.00,
             "name": "测试一下选项卡sweater7",
-            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
         },
         {
             "id": 8,
-            "price": 2.00,
+            "counterPrice": 2.00,
             "name": "白色荷叶边衬衣8",
-            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
         },
         {
             "id": 9,
-            "price": 7.00,
+            "counterPrice": 7.00,
             "name": "白色荷叶边衬衣9",
-            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
             },
             {
                 "id": 10,
-                "price": 5.00,
+                "counterPrice": 5.00,
                 "name": "测试一下overcoat10",
-                "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+                "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
             }
     ]
     },
@@ -60,9 +60,9 @@
             "goodsInfo":[
                 {
                     "id": 1,
-                    "price": 2,
+                    "counterPrice": 2,
                     "name": "白色荷叶边衬衣1",
-                    "cover_url": "https://s1.ax1x.com/2022/04/21/LccKmD.jpg"     
+                    "picUrl": "https://s1.ax1x.com/2022/04/21/LccKmD.jpg"     
                 }
             ]
         },
@@ -70,63 +70,63 @@
             "goodsInfo":[
                 {
                     "id": 4,
-                    "price": 2.00,
+                    "counterPrice": 2.00,
                     "name": "测试选项卡tshirt4",
-                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+                    "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
                 },
                 {
                     "id": 5,
-                    "price": 3.00,
+                    "counterPrice": 3.00,
                     "name": "白色荷叶边衬衣5",
-                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                    "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
                 },
                 {
                     "id": 6,
-                    "price": 1.00,
+                    "counterPrice": 1.00,
                     "name": "白色荷叶边衬衣6",
-                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                    "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
                     }]
                 },
                 "sweater":{
                     "goodsInfo":[
                         {
                             "id": 7,
-                            "price": 10.00,
+                            "counterPrice": 10.00,
                             "name": "测试一下选项卡sweater7",
-                            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+                            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
                         },
                         {
                             "id": 8,
-                            "price": 2.00,
+                            "counterPrice": 2.00,
                             "name": "白色荷叶边衬衣8",
-                            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
                         },
                         {
                             "id": 9,
-                            "price": 7.00,
+                            "counterPrice": 7.00,
                             "name": "白色荷叶边衬衣9",
-                            "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                            "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
                             }]
                         },
                         "overcoat":{
                             "goodsInfo":[
                                 {
                                     "id": 10,
-                                    "price": 5.00,
+                                    "counterPrice": 5.00,
                                     "name": "测试一下overcoat10",
-                                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
+                                    "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"     
                                 },
                                 {
                                     "id": 11,
-                                    "price": 2,
+                                    "counterPrice": 2,
                                     "name": "白色荷叶边衬衣11",
-                                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                                    "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
                                 },
                                 {
                                     "id": 12,
-                                    "price": 2.00,
+                                    "counterPrice": 2.00,
                                     "name": "白色荷叶边衬衣12",
-                                    "cover_url": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
+                                    "picUrl": "https://s1.ax1x.com/2022/04/06/qv8IAJ.jpg"
                                     }]
                                 }
     }

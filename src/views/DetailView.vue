@@ -12,11 +12,13 @@
         <button  @click='addCart'>加 入 购 物 车</button>
         </div>
     </div>
-    <tab-control :titles="['商品详情','评论']"></tab-control> 
-    <div class='commentList' v-for="item in comments" :key='item'>
+    <tab-control @tabClick='tabClick' :titles="['商品详情','评论']"></tab-control> 
+    <div v-if='tabIndex===1' class='commentList' v-for="item in comments" :key='item'>
         <comment :item='item'></comment>
     </div>
-    <div class='detailInfo'>
+    <div v-if='tabIndex===0' class='detailInfo'>
+        <div>这是{{info.name}}</div>
+        <img :src='info.picUrl'>
     </div>
      
 </div>
@@ -55,6 +57,7 @@ export default{
       let goodsNum = ref(1);
       id.value = route.query.id;  
       name.value = route.query.name 
+      const tabIndex = ref(0)
 
       const getNum = (num) =>{
           console.log("得到了",num);
@@ -98,6 +101,10 @@ export default{
           })
         }
 
+        const tabClick=(index)=>{
+            tabIndex.value=index
+
+        }
       return {
           id,
           goodsInfo,
@@ -106,7 +113,9 @@ export default{
           addCart,
           goodsNum,
           store,
-          name  
+          name,
+          tabIndex,
+          tabClick  
      }
 }
 }
@@ -137,6 +146,13 @@ button{
 }
 .quantity{
     margin: 10px 80px
+}
+.commentList{
+    margin-top: 10px;
+}
+img{
+    width:100%;
+    height:100%
 }
 </style>
 

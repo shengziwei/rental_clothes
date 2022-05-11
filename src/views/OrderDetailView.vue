@@ -74,23 +74,23 @@ export default{
         console.log(orderId)
 
    
-            if( status === 1)
+            if( status.value === 1)
             content.value ='立 即 支 付'
-            else if( status === 2)
+            else if( status.value === 2)
              content.value = ''
-            else if(status === 3)
+            else if(status.value === 3)
              content.value ='确 认 收 货'
-            else if(status === 4)
-            content.value ='去 评 价'
+            else if(status.value === 4)
+            content.value =''
 
         onMounted(()=>{
-              store.dispatch('setOrder')
-        })
-
-        getOrderDetail(orderId).then(res=>{
+            getOrderDetail(orderId).then(res=>{
             console.log(res)
            orderData.value = res.data.orderGoods
         })
+
+        })
+
 
         const goDeal=()=>{
             if(status.value===1)
@@ -114,6 +114,8 @@ export default{
             if(status.value===3){
                 comfirmForOrder(orderId).then(res=>{
                     console.log(res)
+                    if(res.errno===0)
+                    router.push({path:'/user'})
                 })
             }
             }
@@ -122,16 +124,11 @@ export default{
                     console.log(res)
                     if(res.errno===0)
                     router.push({path:'/user'})
-                    else
-                    {
-                    Notify({type:'danger',message:res.errmsg})
-                    setTimeout(()=>{ router.push({path:'/orderlist',query:{index:4}})},2000)
-                    }
                 })
-
             }
             const getCommentInfo=(goodsId)=>{
                 console.log(goodsId)
+                if(goodsId!=-1)
                 show.value = true
                 orderGoodsId.value = goodsId
             }

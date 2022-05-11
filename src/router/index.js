@@ -42,16 +42,16 @@ const routes = [
     path: '/shopcart',
     name: 'shopcart',
     component: ShopCart,
-    // meta:{
-    //   isAuthRequired: true
-    // }
+    meta:{
+      isAuthRequired: true
+    }
   },
   {
     path: '/user',
     name: 'user',
-    // meta:{
-    //   isAuthRequired: true
-    // },
+    meta:{
+      isAuthRequired: true
+    },
     component: User,
   },
   {

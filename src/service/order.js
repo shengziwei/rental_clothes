@@ -11,7 +11,8 @@ export function getOrderList(showType){
     return request({
     url: 'http://localhost:8080/wx/order/list',
     data:{
-        showType:0
+        showType:0,
+        limit:100
     },
     method: 'get'
 })
